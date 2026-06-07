@@ -1,190 +1,207 @@
-    // Scroll-based phone reveal
-    const phones = document.querySelectorAll('.phone-wrap');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.15 });
-    phones.forEach(p => observer.observe(p));
+document.addEventListener('DOMContentLoaded', () => {
+  const OWNER_EMAIL = 'akhileshgoswami@arivoai.in';
 
-    // All form submissions are sent to this inbox
-    const OWNER_EMAIL = 'akhileshgoswami@arivoai.in';
+  const phones = document.querySelectorAll('.phone-wrap');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.15 });
+  phones.forEach((phone) => observer.observe(phone));
 
-    function switchForm(type) {
-      const waitlistForm = document.getElementById('waitlistForm');
-      const demoForm = document.getElementById('demoForm');
-      const tabWaitlist = document.getElementById('tabWaitlist');
-      const tabDemo = document.getElementById('tabDemo');
-      const successMsg = document.getElementById('successMsg');
-      const errorMsg = document.getElementById('errorMsg');
+  function switchForm(type) {
+    const waitlistForm = document.getElementById('waitlistForm');
+    const demoForm = document.getElementById('demoForm');
+    const tabWaitlist = document.getElementById('tabWaitlist');
+    const tabDemo = document.getElementById('tabDemo');
 
-      successMsg.style.display = 'none';
-      errorMsg.style.display = 'none';
+    hideFeedback();
 
-      if (type === 'demo') {
-        waitlistForm.style.display = 'none';
-        demoForm.classList.add('visible');
-        tabWaitlist.classList.remove('active');
-        tabDemo.classList.add('active');
-      } else {
-        waitlistForm.style.display = 'flex';
-        demoForm.classList.remove('visible');
-        tabWaitlist.classList.add('active');
-        tabDemo.classList.remove('active');
-      }
+    if (type === 'demo') {
+      waitlistForm.style.display = 'none';
+      demoForm.classList.add('visible');
+      tabWaitlist.classList.remove('active');
+      tabDemo.classList.add('active');
+      return;
     }
 
-    function markInvalid(input) {
-      input.style.borderColor = '#f87171';
-      input.style.boxShadow = '0 0 0 3px rgba(248,113,113,0.15)';
-      setTimeout(() => { input.style.borderColor = ''; input.style.boxShadow = ''; }, 2000);
-    }
+    waitlistForm.style.display = 'flex';
+    demoForm.classList.remove('visible');
+    tabWaitlist.classList.add('active');
+    tabDemo.classList.remove('active');
+  }
 
-    function isValidEmail(email) {
-      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    }
+  function markInvalid(input) {
+    input.style.borderColor = '#f87171';
+    input.style.boxShadow = '0 0 0 3px rgba(248,113,113,0.15)';
+    setTimeout(() => {
+      input.style.borderColor = '';
+      input.style.boxShadow = '';
+    }, 2000);
+  }
 
-    async function sendToInbox(data) {
-      const response = await fetch(`https://formsubmit.co/ajax/${OWNER_EMAIL}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          ...data,
-          _to: OWNER_EMAIL,
-          _captcha: 'false',
-          _template: 'table'
-        })
-      });
+  function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
 
-      if (!response.ok) throw new Error('Submission failed');
-      return response.json();
-    }
-
-    function bindForm(formId, onSubmit) {
-      const form = document.getElementById(formId);
-      if (!form) return;
-
-      form.addEventListener('submit', async (event) => {
-        event.preventDefault();
-        await onSubmit(event);
-      });
-    }
-
-    function showSuccess(message) {
-      const msg = document.getElementById('successMsg');
-      const errorMsg = document.getElementById('errorMsg');
-      errorMsg.style.display = 'none';
-      msg.textContent = message;
-      msg.style.display = 'block';
-    }
-
-    function showError() {
-      const msg = document.getElementById('successMsg');
-      const errorMsg = document.getElementById('errorMsg');
-      msg.style.display = 'none';
-      errorMsg.style.display = 'block';
-    }
-
-    async function handleWaitlist() {
-      const input = document.getElementById('emailInput');
-      const btn = document.getElementById('waitlistBtn');
-      const email = input.value.trim();
-
-      if (!isValidEmail(email)) {
-        markInvalid(input);
-        return;
-      }
-
-      btn.disabled = true;
-      btn.textContent = 'Joining...';
-
-      try {
-        await sendToInbox({
-          'Waitlist Email': email,
-          type: 'Waitlist Signup',
-          _subject: 'New Arivo OS Waitlist Signup',
-          _replyto: email
-        });
-
-        showSuccess("🎉 You're on the list! We'll reach out when Arivo OS launches.");
-        input.value = '';
-        document.getElementById('waitlistForm').style.display = 'none';
-        document.querySelector('.form-tabs').style.display = 'none';
-      } catch {
-        showError();
-      } finally {
-        btn.disabled = false;
-        btn.textContent = 'Join Waitlist →';
-      }
-    }
-
-    async function handleDemo() {
-      const nameInput = document.getElementById('demoName');
-      const emailInput = document.getElementById('demoEmail');
-      const companyInput = document.getElementById('demoCompany');
-      const btn = document.getElementById('demoBtn');
-
-      const name = nameInput.value.trim();
-      const email = emailInput.value.trim();
-      const company = companyInput.value.trim();
-
-      if (!name) { markInvalid(nameInput); return; }
-      if (!isValidEmail(email)) { markInvalid(emailInput); return; }
-
-      btn.disabled = true;
-      btn.textContent = 'Sending...';
-
-      try {
-        await sendToInbox({
-          Name: name,
-          Email: email,
-          Company: company || 'Not provided',
-          type: 'Demo Request',
-          _subject: 'New Arivo OS Demo Request',
-          _replyto: email
-        });
-
-        showSuccess('🎉 Demo request received! We\'ll contact you shortly.');
-        nameInput.value = '';
-        emailInput.value = '';
-        companyInput.value = '';
-        document.getElementById('demoForm').classList.remove('visible');
-        document.querySelector('.form-tabs').style.display = 'none';
-      } catch {
-        showError();
-      } finally {
-        btn.disabled = false;
-        btn.textContent = 'Request Demo →';
-      }
-    }
-
-    bindForm('waitlistForm', handleWaitlist);
-    bindForm('demoForm', handleDemo);
-
-    // Open demo form when "Book a Demo" links are clicked
-    document.querySelectorAll('a[href="#waitlist"]').forEach(link => {
-      if (link.textContent.toLowerCase().includes('demo')) {
-        link.addEventListener('click', () => {
-          setTimeout(() => switchForm('demo'), 100);
-        });
-      }
+  async function sendToInbox(data) {
+    const response = await fetch(`https://formsubmit.co/ajax/${OWNER_EMAIL}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        ...data,
+        _to: OWNER_EMAIL,
+        _captcha: 'false',
+        _template: 'table',
+      }),
     });
 
-    // Smooth nav background on scroll
-    const nav = document.querySelector('nav');
-    window.addEventListener('scroll', () => {
-      nav.style.background = window.scrollY > 50
-        ? 'rgba(5,12,26,0.95)'
-        : 'rgba(5,12,26,0.7)';
-    });
+    if (!response.ok) throw new Error('Submission failed');
+    return response.json();
+  }
 
-    // Subtle parallax on hero
-    window.addEventListener('scroll', () => {
-      const y = window.scrollY;
-      document.querySelector('.hero::before') && null;
-      const orbs = document.querySelectorAll('.orb');
-      orbs.forEach((o, i) => {
-        o.style.transform = `translateY(${y * (i === 0 ? 0.08 : 0.05)}px)`;
+  function hideFeedback() {
+    document.getElementById('successMsg').classList.remove('visible');
+    document.getElementById('errorMsg').classList.remove('visible');
+  }
+
+  function showSuccess(title, body) {
+    const successMsg = document.getElementById('successMsg');
+    const errorMsg = document.getElementById('errorMsg');
+
+    document.getElementById('successTitle').textContent = title;
+    document.getElementById('successBody').textContent = body;
+    errorMsg.classList.remove('visible');
+    successMsg.classList.add('visible');
+    successMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function showError() {
+    const successMsg = document.getElementById('successMsg');
+    const errorMsg = document.getElementById('errorMsg');
+
+    successMsg.classList.remove('visible');
+    errorMsg.classList.add('visible');
+    errorMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function hideForms() {
+    document.getElementById('waitlistForm').style.display = 'none';
+    document.getElementById('demoForm').classList.remove('visible');
+    document.querySelector('.form-tabs').style.display = 'none';
+  }
+
+  async function handleWaitlist(event) {
+    event.preventDefault();
+
+    const input = document.getElementById('emailInput');
+    const btn = document.getElementById('waitlistBtn');
+    const email = input.value.trim();
+
+    if (!isValidEmail(email)) {
+      markInvalid(input);
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Joining...';
+    hideFeedback();
+
+    try {
+      await sendToInbox({
+        'Waitlist Email': email,
+        type: 'Waitlist Signup',
+        _subject: 'New Arivo OS Waitlist Signup',
+        _replyto: email,
       });
+
+      hideForms();
+      showSuccess("You're on the list!", "We'll reach out when Arivo OS launches.");
+      input.value = '';
+    } catch {
+      showError();
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Join Waitlist →';
+    }
+  }
+
+  async function handleDemo(event) {
+    event.preventDefault();
+
+    const nameInput = document.getElementById('demoName');
+    const emailInput = document.getElementById('demoEmail');
+    const companyInput = document.getElementById('demoCompany');
+    const btn = document.getElementById('demoBtn');
+
+    const name = nameInput.value.trim();
+    const email = emailInput.value.trim();
+    const company = companyInput.value.trim();
+
+    if (!name) {
+      markInvalid(nameInput);
+      return;
+    }
+
+    if (!isValidEmail(email)) {
+      markInvalid(emailInput);
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    hideFeedback();
+
+    try {
+      await sendToInbox({
+        Name: name,
+        Email: email,
+        Company: company || 'Not provided',
+        type: 'Demo Request',
+        _subject: 'New Arivo OS Demo Request',
+        _replyto: email,
+      });
+
+      hideForms();
+      showSuccess('Demo request received!', "We'll contact you shortly.");
+      nameInput.value = '';
+      emailInput.value = '';
+      companyInput.value = '';
+    } catch {
+      showError();
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Request Demo →';
+    }
+  }
+
+  document.getElementById('waitlistForm').addEventListener('submit', handleWaitlist);
+  document.getElementById('demoForm').addEventListener('submit', handleDemo);
+
+  document.querySelectorAll('a[href="#waitlist"]').forEach((link) => {
+    if (link.textContent.toLowerCase().includes('demo')) {
+      link.addEventListener('click', () => {
+        setTimeout(() => switchForm('demo'), 100);
+      });
+    }
+  });
+
+  window.switchForm = switchForm;
+
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    nav.style.background = window.scrollY > 50
+      ? 'rgba(5,12,26,0.95)'
+      : 'rgba(5,12,26,0.7)';
+  });
+
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    document.querySelectorAll('.orb').forEach((orb, index) => {
+      orb.style.transform = `translateY(${y * (index === 0 ? 0.08 : 0.05)}px)`;
     });
+  });
+});

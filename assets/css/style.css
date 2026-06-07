@@ -984,15 +984,43 @@
 
     .waitlist-count span { color: var(--teal); font-weight: 600; }
 
-    .success-msg,
-    .error-msg {
+    .form-feedback {
       display: none;
-      padding: 14px 24px;
-      border-radius: 12px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      margin: 16px auto;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 18px 22px;
+      border-radius: 14px;
+      margin: 20px auto 0;
       max-width: 440px;
+      text-align: left;
+      animation: fadeUp 0.45s ease both;
+    }
+
+    .form-feedback.visible { display: flex; }
+
+    .feedback-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .feedback-text {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    .feedback-text strong {
+      font-size: 0.95rem;
+      font-weight: 700;
     }
 
     .success-msg {
@@ -1001,10 +1029,25 @@
       color: var(--teal);
     }
 
+    .success-msg .feedback-icon {
+      background: rgba(0,212,170,0.15);
+      color: var(--teal);
+    }
+
     .error-msg {
       background: rgba(248,113,113,0.1);
       border: 1px solid rgba(248,113,113,0.25);
       color: #f87171;
+    }
+
+    .error-msg .feedback-icon {
+      background: rgba(248,113,113,0.15);
+      color: #f87171;
+    }
+
+    .error-msg a {
+      color: #fca5a5;
+      text-decoration: underline;
     }
 
     .demo-form {

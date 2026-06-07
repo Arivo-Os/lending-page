@@ -476,36 +476,32 @@
           <button class="form-tab" id="tabDemo" onclick="switchForm('demo')">Book a Demo</button>
         </div>
 
-        <form
-          class="waitlist-form"
-          id="waitlistForm"
-          action="https://formsubmit.co/akhileshgoswami@arivoai.in"
-          method="POST"
-        >
-          <input type="hidden" name="_subject" value="New Arivo OS Waitlist Signup" />
-          <input type="hidden" name="_template" value="table" />
-          <input type="hidden" name="_captcha" value="false" />
-          <input type="email" name="Waitlist Email" class="waitlist-input" placeholder="you@example.com" id="emailInput" required />
+        <form class="waitlist-form" id="waitlistForm" novalidate>
+          <input type="email" class="waitlist-input" placeholder="you@example.com" id="emailInput" autocomplete="email" />
           <button type="submit" class="btn btn-primary" id="waitlistBtn" style="padding:14px 24px;font-size:0.9rem;border-radius:12px;white-space:nowrap">Join Waitlist →</button>
         </form>
 
-        <form
-          class="demo-form"
-          id="demoForm"
-          action="https://formsubmit.co/akhileshgoswami@arivoai.in"
-          method="POST"
-        >
-          <input type="hidden" name="_subject" value="New Arivo OS Demo Request" />
-          <input type="hidden" name="_template" value="table" />
-          <input type="hidden" name="_captcha" value="false" />
-          <input type="text" name="Name" class="waitlist-input" placeholder="Your name" id="demoName" required />
-          <input type="email" name="Email" class="waitlist-input" placeholder="you@example.com" id="demoEmail" required />
-          <input type="text" name="Company" class="waitlist-input" placeholder="Company (optional)" id="demoCompany" />
+        <form class="demo-form" id="demoForm" novalidate>
+          <input type="text" class="waitlist-input" placeholder="Your name" id="demoName" autocomplete="name" />
+          <input type="email" class="waitlist-input" placeholder="you@example.com" id="demoEmail" autocomplete="email" />
+          <input type="text" class="waitlist-input" placeholder="Company (optional)" id="demoCompany" autocomplete="organization" />
           <button type="submit" class="btn btn-primary" id="demoBtn" style="padding:14px 24px;font-size:0.9rem;border-radius:12px">Request Demo →</button>
         </form>
 
-        <div class="success-msg" id="successMsg">🎉 You're on the list! We'll reach out when Arivo OS launches.</div>
-        <div class="error-msg" id="errorMsg">Something went wrong. Please try again or email akhileshgoswami@arivoai.in directly.</div>
+        <div class="form-feedback success-msg" id="successMsg" role="status" aria-live="polite">
+          <div class="feedback-icon">✓</div>
+          <div class="feedback-text">
+            <strong id="successTitle">You're on the list!</strong>
+            <span id="successBody">We'll reach out when Arivo OS launches.</span>
+          </div>
+        </div>
+        <div class="form-feedback error-msg" id="errorMsg" role="alert">
+          <div class="feedback-icon">!</div>
+          <div class="feedback-text">
+            <strong>Something went wrong</strong>
+            <span>Please try again or email <a href="mailto:akhileshgoswami@arivoai.in">akhileshgoswami@arivoai.in</a></span>
+          </div>
+        </div>
         <div class="waitlist-count">
           <span>🚀</span> Be among the first to get early access
         </div>
