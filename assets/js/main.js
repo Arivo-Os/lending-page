@@ -51,6 +51,7 @@
         },
         body: JSON.stringify({
           ...data,
+          _to: OWNER_EMAIL,
           _captcha: 'false',
           _template: 'table'
         })
@@ -58,6 +59,16 @@
 
       if (!response.ok) throw new Error('Submission failed');
       return response.json();
+    }
+
+    function bindForm(formId, onSubmit) {
+      const form = document.getElementById(formId);
+      if (!form) return;
+
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        await onSubmit(event);
+      });
     }
 
     function showSuccess(message) {
@@ -90,9 +101,10 @@
 
       try {
         await sendToInbox({
-          email,
+          'Waitlist Email': email,
           type: 'Waitlist Signup',
-          _subject: 'New Arivo OS Waitlist Signup'
+          _subject: 'New Arivo OS Waitlist Signup',
+          _replyto: email
         });
 
         showSuccess("🎉 You're on the list! We'll reach out when Arivo OS launches.");
@@ -125,11 +137,12 @@
 
       try {
         await sendToInbox({
-          name,
-          email,
-          company: company || 'Not provided',
+          Name: name,
+          Email: email,
+          Company: company || 'Not provided',
           type: 'Demo Request',
-          _subject: 'New Arivo OS Demo Request'
+          _subject: 'New Arivo OS Demo Request',
+          _replyto: email
         });
 
         showSuccess('🎉 Demo request received! We\'ll contact you shortly.');
@@ -145,6 +158,9 @@
         btn.textContent = 'Request Demo →';
       }
     }
+
+    bindForm('waitlistForm', handleWaitlist);
+    bindForm('demoForm', handleDemo);
 
     // Open demo form when "Book a Demo" links are clicked
     document.querySelectorAll('a[href="#waitlist"]').forEach(link => {

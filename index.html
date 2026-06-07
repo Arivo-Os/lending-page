@@ -476,17 +476,33 @@
           <button class="form-tab" id="tabDemo" onclick="switchForm('demo')">Book a Demo</button>
         </div>
 
-        <div class="waitlist-form" id="waitlistForm">
-          <input type="email" class="waitlist-input" placeholder="you@example.com" id="emailInput" />
-          <button class="btn btn-primary" id="waitlistBtn" onclick="handleWaitlist()" style="padding:14px 24px;font-size:0.9rem;border-radius:12px;white-space:nowrap">Join Waitlist →</button>
-        </div>
+        <form
+          class="waitlist-form"
+          id="waitlistForm"
+          action="https://formsubmit.co/akhileshgoswami@arivoai.in"
+          method="POST"
+        >
+          <input type="hidden" name="_subject" value="New Arivo OS Waitlist Signup" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="email" name="Waitlist Email" class="waitlist-input" placeholder="you@example.com" id="emailInput" required />
+          <button type="submit" class="btn btn-primary" id="waitlistBtn" style="padding:14px 24px;font-size:0.9rem;border-radius:12px;white-space:nowrap">Join Waitlist →</button>
+        </form>
 
-        <div class="demo-form" id="demoForm">
-          <input type="text" class="waitlist-input" placeholder="Your name" id="demoName" />
-          <input type="email" class="waitlist-input" placeholder="you@example.com" id="demoEmail" />
-          <input type="text" class="waitlist-input" placeholder="Company (optional)" id="demoCompany" />
-          <button class="btn btn-primary" id="demoBtn" onclick="handleDemo()" style="padding:14px 24px;font-size:0.9rem;border-radius:12px">Request Demo →</button>
-        </div>
+        <form
+          class="demo-form"
+          id="demoForm"
+          action="https://formsubmit.co/akhileshgoswami@arivoai.in"
+          method="POST"
+        >
+          <input type="hidden" name="_subject" value="New Arivo OS Demo Request" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="text" name="Name" class="waitlist-input" placeholder="Your name" id="demoName" required />
+          <input type="email" name="Email" class="waitlist-input" placeholder="you@example.com" id="demoEmail" required />
+          <input type="text" name="Company" class="waitlist-input" placeholder="Company (optional)" id="demoCompany" />
+          <button type="submit" class="btn btn-primary" id="demoBtn" style="padding:14px 24px;font-size:0.9rem;border-radius:12px">Request Demo →</button>
+        </form>
 
         <div class="success-msg" id="successMsg">🎉 You're on the list! We'll reach out when Arivo OS launches.</div>
         <div class="error-msg" id="errorMsg">Something went wrong. Please try again or email akhileshgoswami@arivoai.in directly.</div>
