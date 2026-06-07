@@ -30,7 +30,7 @@ Changes pushed to `main` are published automatically (may take 1–2 minutes).
 
 ## Forms & email
 
-Waitlist and demo submissions are sent to `agiri5375@gmail.com` via [FormSubmit](https://formsubmit.co).
+Waitlist and demo submissions are sent to `akhileshgoswami@arivoai.in` via [FormSubmit](https://formsubmit.co).
 
 On first submission, check that inbox and click **Activate Form** in the FormSubmit confirmation email.
 

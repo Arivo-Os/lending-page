@@ -6,7 +6,7 @@
     phones.forEach(p => observer.observe(p));
 
     // All form submissions are sent to this inbox
-    const OWNER_EMAIL = 'agiri5375@gmail.com';
+    const OWNER_EMAIL = 'akhileshgoswami@arivoai.in';
 
     function switchForm(type) {
       const waitlistForm = document.getElementById('waitlistForm');

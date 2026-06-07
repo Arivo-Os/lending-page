@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <linearGradient id="arivo-grad-lg" x1="64" y1="64" x2="448" y2="448" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#00d4aa"/>
+      <stop offset="1" stop-color="#3b82f6"/>
+    </linearGradient>
+  </defs>
+  <rect x="64" y="64" width="384" height="384" rx="108" fill="url(#arivo-grad-lg)"/>
+  <text
+    x="256"
+    y="310"
+    text-anchor="middle"
+    fill="#ffffff"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="200"
+    font-weight="700"
+    font-style="italic"
+  >A/</text>
+</svg>
