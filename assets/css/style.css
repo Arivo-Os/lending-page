@@ -292,33 +292,52 @@
     .phone-wrap-video {
       opacity: 1;
       transform: none;
+      width: min(300px, calc(100vw - 48px), calc(72dvh * 9 / 19.5));
+      max-width: 100%;
     }
 
     .phone-frame-video {
-      width: 280px;
+      width: 100%;
       position: relative;
+    }
+
+    .phone-frame-video:hover {
+      transform: none;
     }
 
     .phone-screen-video {
       padding: 0;
-      min-height: 0;
-      aspect-ratio: 9 / 19.5;
+      min-height: unset;
+      height: auto;
       background: #000;
     }
 
+    .phone-frame-video .phone-screen {
+      min-height: unset;
+    }
+
+    .phone-screen-video-inner {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 9 / 19.5;
+      overflow: hidden;
+      border-radius: 24px;
+    }
+
     .showcase-video-player {
-      display: block;
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: center top;
-      border-radius: 24px;
+      display: block;
     }
 
     .video-sound-toggle {
       position: absolute;
-      right: 28px;
-      bottom: 28px;
+      right: 22px;
+      bottom: 22px;
       z-index: 2;
       display: flex;
       align-items: center;
@@ -1278,8 +1297,8 @@
 
     @media (prefers-reduced-motion: reduce) {
       .showcase-video-player { display: none; }
-      .phone-screen-video {
-        background: #0a1628 url("assets/images/logo.svg") center / 40% no-repeat;
+      .phone-screen-video-inner {
+        background: #0a1628 url("../images/logo.svg") center / 40% no-repeat;
       }
     }
 
@@ -1321,13 +1340,24 @@
       .why-inner { grid-template-columns: 1fr; gap: 40px; }
       .phones-row { gap: 14px; }
       .phone-frame { width: 165px; }
-      .phone-screen { min-height: 290px; }
+      .phone-screen:not(.phone-screen-video) { min-height: 290px; }
+      .phone-wrap-video {
+        width: min(260px, calc(100vw - 48px), calc(65dvh * 9 / 19.5));
+      }
     }
 
     @media (max-width: 640px) {
       .nav-cta .btn-ghost { display: none; }
-      .phone-frame-video { width: 240px; }
-      .showcase-video { margin-bottom: 40px; }
+      .showcase-video { margin-bottom: 40px; padding: 0 16px; }
+      .phone-wrap-video {
+        width: min(240px, calc(100vw - 32px), calc(58dvh * 9 / 19.5));
+      }
+      .video-sound-toggle {
+        right: 18px;
+        bottom: 18px;
+        width: 32px;
+        height: 32px;
+      }
       .phones-row { gap: 10px; }
       .phone-frame { width: 140px; }
       .phone-screen { min-height: 250px; }
