@@ -3,18 +3,66 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Arivo - India's Financial Operating System</title>
-  <meta name="description" content="One place to see, understand, and manage all your money." />
-  <meta name="keywords" content="fintech, India, financial management, investments, UPI, banking, mutual funds" />
-  <meta property="og:title" content="Arivo" />
-  <meta property="og:description" content="One place to see, understand, and manage all your money." />
+  <title>Arivo OS | India's Financial Operating System — Net Worth &amp; AI Finance</title>
+  <meta name="description" content="Arivo OS is India's financial operating system. Track net worth, unify banks, UPI, mutual funds &amp; stocks, and get AI finance guidance — built for India." />
+  <meta name="keywords" content="financial OS, net worth tracking, AI finance assistant India, personal finance app India, fintech India, UPI expense tracker, mutual fund tracker, investment app India" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://arivoai.in/" />
+  <meta property="og:title" content="Arivo OS | India's Financial Operating System" />
+  <meta property="og:description" content="Track net worth, unify all accounts, and get AI-powered finance guidance. India's financial OS — join the beta." />
   <meta property="og:image" content="https://arivoai.in/assets/images/logo-512.png" />
-  <meta property="og:url" content="https://arivoai.in" />
+  <meta property="og:url" content="https://arivoai.in/" />
   <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Arivo OS" />
+  <meta property="og:locale" content="en_IN" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Arivo OS | India's Financial Operating System" />
+  <meta name="twitter:description" content="Net worth tracking, unified accounts, and an AI finance assistant — built for India." />
+  <meta name="twitter:image" content="https://arivoai.in/assets/images/logo-512.png" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://arivoai.in/#organization",
+        "name": "Arivo OS",
+        "url": "https://arivoai.in/",
+        "logo": "https://arivoai.in/assets/images/logo-512.png",
+        "email": "akhileshgoswami@arivoai.in",
+        "sameAs": [
+          "https://www.linkedin.com/company/arivo-os/"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://arivoai.in/#website",
+        "url": "https://arivoai.in/",
+        "name": "Arivo OS",
+        "description": "India's financial operating system for net worth tracking and AI-powered money management.",
+        "publisher": { "@id": "https://arivoai.in/#organization" }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "Arivo OS",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Web, iOS, Android",
+        "description": "India's financial OS — net worth tracking, unified accounts, and AI finance assistant for banks, UPI, mutual funds, and stocks.",
+        "url": "https://arivoai.in/",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "INR",
+          "description": "Free beta access with 1-month trial at launch"
+        }
+      }
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/css/style.css?v=8" />
+  <link rel="stylesheet" href="/assets/css/style.css?v=9" />
   <link rel="manifest" href="manifest.webmanifest" />
   <meta name="theme-color" content="#050c1a" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -28,20 +76,25 @@
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <a href="#" class="nav-logo">
-      <img class="logo-icon" src="assets/images/logo.svg" alt="Arivo OS" width="34" height="34" />
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header>
+  <nav aria-label="Main navigation">
+    <a href="/" class="nav-logo">
+      <img class="logo-icon" src="assets/images/logo.svg" alt="Arivo OS logo" width="34" height="34" />
       <span>Arivo OS</span>
     </a>
     <div class="nav-cta">
       <a href="#waitlist" class="btn btn-ghost">Book a Demo</a>
-      <a href="#waitlist" class="btn btn-primary">Join Waitlist</a>
+      <a href="#waitlist" class="btn btn-primary">Join Beta</a>
     </div>
   </nav>
+  </header>
+
+  <main id="main-content">
 
   <!-- HERO -->
-  <section class="hero">
+  <section class="hero" id="home" aria-labelledby="hero-heading">
     <div class="grid-bg"></div>
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
@@ -50,18 +103,18 @@
       <span></span> Now in Early Access · India's Financial OS
     </div>
 
-    <h1>
+    <h1 id="hero-heading">
       India's<br/>
       <span class="gradient-text">Financial Operating</span><br/>
       System
     </h1>
 
     <p class="hero-sub">
-      Understand, manage, and grow your complete financial life from one intelligent platform.
+      Arivo OS is India's financial OS — track net worth, manage UPI, banks, mutual funds, and stocks, with an AI finance assistant built for how India manages money.
     </p>
 
     <div class="hero-actions">
-      <a href="#waitlist" class="btn btn-primary btn-xl">Join Waitlist →</a>
+      <a href="#waitlist" class="btn btn-primary btn-xl">Join Beta →</a>
       <a href="#waitlist" class="btn btn-ghost btn-xl">Book a Demo</a>
     </div>
 
@@ -89,10 +142,11 @@
   </section>
 
   <!-- PHONE SHOWCASE -->
-  <section class="showcase">
+  <section class="showcase" id="product" aria-labelledby="product-heading">
     <div class="showcase-header container">
       <div class="section-label">Product</div>
-      <h2 class="section-title">Your entire financial life,<br/>beautifully unified</h2>
+      <h2 class="section-title" id="product-heading">Your entire financial life,<br/>beautifully unified</h2>
+      <p class="section-sub">Real-time net worth tracking, bank accounts, UPI spending, investments, and bills — unified in India's financial operating system.</p>
     </div>
 
     <div class="showcase-video">
@@ -109,6 +163,7 @@
                 loop
                 playsinline
                 preload="metadata"
+                aria-label="Arivo OS product demo showing net worth dashboard, bank accounts, and expense analytics"
               >
                 <source src="assets/videos/arivo-hero.mp4" type="video/mp4" />
               </video>
@@ -396,68 +451,88 @@
   </section>
 
   <!-- FEATURES -->
-  <section class="features">
+  <section class="features" id="features" aria-labelledby="features-heading">
     <div class="container">
       <div class="features-header">
         <div class="section-label">What Arivo Does</div>
-        <h2 class="section-title">Everything your money needs,<br/>in one place</h2>
-        <p class="section-sub" style="margin: 0 auto">From banks to mutual funds to credit cards — Arivo OS connects your entire financial life under one roof.</p>
+        <h2 class="section-title" id="features-heading">Everything your money needs,<br/>in one place</h2>
+        <p class="section-sub" style="margin: 0 auto">From UPI and bank accounts to mutual funds and credit cards — Arivo OS connects your entire financial life under one roof.</p>
       </div>
       <div class="features-grid">
-        <div class="feature-card">
+        <article class="feature-card">
           <div class="feature-icon teal">🔗</div>
-          <h3>Unified Financial View</h3>
-          <p>Connect all your accounts — banks, mutual funds, stocks, credit cards — and see your complete financial picture updated in real time.</p>
-        </div>
-        <div class="feature-card">
+          <h3>Unified Net Worth &amp; Accounts</h3>
+          <p>Connect banks, mutual funds, stocks, and credit cards. See your complete net worth and financial picture updated in real time — India's financial OS in one dashboard.</p>
+        </article>
+        <article class="feature-card">
           <div class="feature-icon blue">🤖</div>
-          <h3>Smart Insights</h3>
-          <p>AI-powered insights into spending patterns, savings opportunities, and financial health. Understand your money like never before.</p>
-        </div>
-        <div class="feature-card">
+          <h3>AI Finance Assistant for India</h3>
+          <p>Get AI-powered insights on spending, savings, and portfolio health — tuned for Indian income patterns, UPI habits, EMIs, and tax-saving investments.</p>
+        </article>
+        <article class="feature-card">
           <div class="feature-icon purple">🎯</div>
-          <h3>Financial Control</h3>
-          <p>Track expenses, bills, EMIs, investments, and liabilities from one place. Set budgets and get alerts before you overspend.</p>
+          <h3>Expense, Bill &amp; EMI Tracking</h3>
+          <p>Track UPI, card, and bank expenses. Manage bills, EMIs, and liabilities from one place. Set budgets and get alerts before you overspend.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT ARIVO -->
+  <section class="about-arivo" id="about" aria-labelledby="about-heading">
+    <div class="container">
+      <div class="about-arivo-inner">
+        <h2 class="section-title" id="about-heading">What is Arivo OS?</h2>
+        <div class="about-arivo-copy">
+          <p>
+            Arivo OS is India's financial operating system — a unified platform for managing money across banks, mutual funds, stocks, UPI, and credit cards. Instead of switching between multiple apps and spreadsheets, Arivo brings your complete financial life into one intelligent dashboard designed for how India saves, spends, and invests.
+          </p>
+          <p>
+            At its core, Arivo provides real-time net worth tracking. It securely connects your financial accounts and automatically updates your assets, liabilities, portfolio performance, and available cash—giving you a complete and accurate view of your finances in one place.
+          </p>
+          <p>
+            Arivo also acts as an AI finance assistant built for India. It analyzes spending patterns, EMIs, bills, and investments in a local context, helping you understand cash flow, avoid missed payments, and make better financial decisions. From UPI-heavy daily expenses to long-term investment goals, Arivo helps you manage and grow your money with clarity.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- WHY ARIVO -->
-  <section class="why">
+  <section class="why" id="why-arivo" aria-labelledby="why-heading">
     <div class="container">
       <div class="why-inner">
         <div>
           <div class="section-label">Why Arivo</div>
-          <h2 class="section-title">Built for how India manages money</h2>
-          <p class="section-sub" style="margin-bottom: 36px">Arivo OS is engineered on India's digital financial stack — UPI, AA Framework, BSE — to give you the most complete picture of your wealth.</p>
+          <h2 class="section-title" id="why-heading">Built for how India manages money</h2>
+          <p class="section-sub" style="margin-bottom: 36px">Arivo OS is engineered on India's digital financial stack — UPI, Account Aggregator, and BSE — to give you the most complete picture of your wealth.</p>
           <div class="why-points">
             <div class="why-point">
               <div class="why-check">✓</div>
               <div>
-                <h4>One app for your complete financial life</h4>
-                <p>Banks, mutual funds, stocks, credit cards, bills — all unified.</p>
+                <h3>One app for your complete financial life</h3>
+                <p>Banks, mutual funds, stocks, credit cards, and bills — all unified in one financial OS.</p>
               </div>
             </div>
             <div class="why-point">
               <div class="why-check">🔒</div>
               <div>
-                <h4>Secure and privacy-first</h4>
+                <h3>Secure and privacy-first</h3>
                 <p>Bank-grade encryption. We never store your credentials. Built on RBI-regulated Account Aggregator framework.</p>
               </div>
             </div>
             <div class="why-point">
               <div class="why-check">🇮🇳</div>
               <div>
-                <h4>Built on India's digital financial infrastructure</h4>
-                <p>Native UPI, BBPS, and Account Aggregator integrations for seamless data sync.</p>
+                <h3>Built on India's digital financial infrastructure</h3>
+                <p>Native UPI, BBPS, and Account Aggregator integrations for seamless data sync across Indian financial institutions.</p>
               </div>
             </div>
             <div class="why-point">
               <div class="why-check">✨</div>
               <div>
-                <h4>AI-powered financial intelligence</h4>
-                <p>Personalized recommendations and anomaly detection that work in Indian context.</p>
+                <h3>AI-powered financial intelligence</h3>
+                <p>Personalized recommendations and anomaly detection from your AI finance assistant — built for Indian context.</p>
               </div>
             </div>
           </div>
@@ -496,9 +571,10 @@
   </section>
 
   <!-- FOUNDER -->
-  <section class="founder">
+  <section class="founder" id="team" aria-labelledby="team-heading">
     <div class="container">
-      <div class="section-label" style="text-align:center;margin-bottom:40px">The Team</div>
+      <div class="section-label" style="text-align:center;margin-bottom:16px">The Team</div>
+      <h2 class="section-title founder-section-title" id="team-heading">Built by fintech engineers</h2>
       <div class="founder-card">
         <img class="founder-avatar" src="assets/images/founder.png" alt="Akhilesh Goswami, Founder & CEO of Arivo OS" />
         <div class="founder-name">Akhilesh Goswami</div>
@@ -530,7 +606,7 @@
   </section>
 
   <!-- WAITLIST -->
-  <section class="waitlist" id="waitlist">
+  <section class="waitlist" id="waitlist" aria-labelledby="waitlist-heading">
     <div class="container">
       <div class="waitlist-inner">
         <div class="beta-badge">
@@ -540,7 +616,7 @@
           Beta Access
         </div>
 
-        <h2>
+        <h2 id="waitlist-heading">
           Your financial life,<br />
           <span class="beta-accent">one place.</span>
         </h2>
@@ -617,15 +693,18 @@
     </div>
   </section>
 
+  </main>
+
   <!-- FOOTER -->
   <footer>
     <div class="container">
       <div class="footer-inner">
         <div class="footer-left">
-          <a href="#" class="nav-logo" style="font-size:1rem">
-            <img class="logo-icon logo-icon-sm" src="assets/images/logo.svg" alt="Arivo OS" width="28" height="28" />
+          <a href="/" class="nav-logo" style="font-size:1rem">
+            <img class="logo-icon logo-icon-sm" src="assets/images/logo.svg" alt="Arivo OS logo" width="28" height="28" />
             <span>Arivo OS</span>
           </a>
+          <p class="footer-tagline">India's financial operating system — net worth tracking &amp; AI finance assistant.</p>
           <div class="footer-copy">© 2026 Arivo OS. All rights reserved.</div>
         </div>
         <div class="footer-links">
@@ -649,13 +728,13 @@
           </div>
           <a href="terms.html" class="footer-link">Terms &amp; Conditions</a>
           <a href="privacy.html" class="footer-link">Privacy Policy</a>
-          <a href="#waitlist" class="btn btn-ghost" style="padding:8px 18px;font-size:0.8rem">Join Waitlist</a>
+          <a href="#waitlist" class="btn btn-ghost" style="padding:8px 18px;font-size:0.8rem">Join Beta</a>
         </div>
       </div>
     </div>
   </footer>
 
-  <script src="/assets/js/form-config.js?v=8"></script>
-  <script src="/assets/js/main.js?v=8"></script>
+  <script src="/assets/js/form-config.js?v=9"></script>
+  <script src="/assets/js/main.js?v=9"></script>
 </body>
 </html>

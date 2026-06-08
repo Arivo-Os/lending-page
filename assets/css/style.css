@@ -30,6 +30,25 @@
       -webkit-font-smoothing: antialiased;
     }
 
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 16px;
+      z-index: 200;
+      padding: 10px 16px;
+      background: var(--teal);
+      color: var(--bg);
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: top 0.2s;
+    }
+
+    .skip-link:focus {
+      top: 16px;
+    }
+
     /* ─── NOISE OVERLAY ─── */
     body::before {
       content: '';
@@ -283,6 +302,11 @@
     .showcase-header {
       text-align: center;
       margin-bottom: 40px;
+    }
+
+    .showcase-header .section-sub {
+      max-width: 560px;
+      margin: 16px auto 0;
     }
 
     .showcase-video {
@@ -917,7 +941,7 @@
       font-size: 0.75rem;
     }
 
-    .why-point h4 {
+    .why-point h3 {
       font-size: 0.95rem;
       font-weight: 700;
       margin-bottom: 4px;
@@ -995,6 +1019,11 @@
     .founder {
       padding: 100px 0;
       text-align: center;
+    }
+
+    .founder-section-title {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      margin-bottom: 40px;
     }
 
     .founder-card {
@@ -1120,6 +1149,41 @@
 
     .icon-link-company {
       position: relative;
+    }
+
+    /* ─── ABOUT / SEO ─── */
+    .about-arivo {
+      padding: 72px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .about-arivo-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .about-arivo .section-title {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      margin-bottom: 28px;
+    }
+
+    .about-arivo-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      text-align: left;
+    }
+
+    .about-arivo-copy p {
+      color: var(--muted2);
+      font-size: 0.95rem;
+      line-height: 1.75;
+    }
+
+    .about-arivo-copy strong {
+      color: var(--text);
+      font-weight: 600;
     }
 
     /* ─── WAITLIST ─── */
@@ -1414,6 +1478,13 @@
     }
 
     .footer-left { display: flex; flex-direction: column; gap: 8px; }
+
+    .footer-tagline {
+      font-size: 0.8rem;
+      color: var(--muted2);
+      max-width: 280px;
+      line-height: 1.5;
+    }
 
     .footer-copy {
       font-size: 0.8rem;
