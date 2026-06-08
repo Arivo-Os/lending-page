@@ -191,6 +191,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.switchForm = switchForm;
 
+  const productVideo = document.getElementById('productVideo');
+  const videoSoundToggle = document.getElementById('videoSoundToggle');
+
+  if (productVideo && videoSoundToggle) {
+    productVideo.play().catch(() => {});
+
+    videoSoundToggle.addEventListener('click', () => {
+      const isMuted = productVideo.muted;
+      productVideo.muted = !isMuted;
+      videoSoundToggle.classList.toggle('is-unmuted', isMuted);
+      videoSoundToggle.setAttribute('aria-pressed', String(isMuted));
+      videoSoundToggle.setAttribute('aria-label', isMuted ? 'Turn sound off' : 'Turn sound on');
+      videoSoundToggle.title = isMuted ? 'Turn sound off' : 'Turn sound on';
+
+      if (isMuted) productVideo.play().catch(() => {});
+    });
+  }
+
   const nav = document.querySelector('nav');
   window.addEventListener('scroll', () => {
     nav.style.background = window.scrollY > 50
