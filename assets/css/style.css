@@ -1129,6 +1129,68 @@
 
     .footer-link:hover { color: var(--text); }
 
+    /* ─── LEGAL PAGES ─── */
+    .legal-page {
+      position: relative;
+      z-index: 1;
+      padding: 140px 0 80px;
+      min-height: 100vh;
+    }
+
+    .legal-header {
+      max-width: 720px;
+      margin-bottom: 48px;
+    }
+
+    .legal-header h1 {
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin: 12px 0 8px;
+    }
+
+    .legal-updated {
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+
+    .legal-content {
+      max-width: 720px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .legal-section h2 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .legal-section p {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--muted2);
+    }
+
+    .legal-section a {
+      color: var(--teal);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .legal-section a:hover {
+      color: var(--text);
+    }
+
+    .legal-back {
+      max-width: 720px;
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+
     /* ─── ANIMATIONS ─── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(24px); }
