@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/css/style.css?v=4" />
+  <link rel="stylesheet" href="/assets/css/style.css?v=8" />
   <link rel="manifest" href="manifest.webmanifest" />
   <meta name="theme-color" content="#050c1a" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -533,32 +533,50 @@
   <section class="waitlist" id="waitlist">
     <div class="container">
       <div class="waitlist-inner">
-        <div class="section-label">Early Access</div>
-        <h2>Get early access to<br/><span style="background:linear-gradient(135deg,var(--teal),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Arivo OS</span></h2>
-        <p>Join the waitlist and be among the first to experience India's most intelligent financial operating system.</p>
+        <div class="beta-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+          </svg>
+          Beta Access
+        </div>
+
+        <h2>
+          Your financial life,<br />
+          <span class="beta-accent">one place.</span>
+        </h2>
+
+        <p class="waitlist-sub">
+          Be among the first to try India's financial OS — net worth, accounts,
+          investments and AI guidance, unified.
+        </p>
 
         <div class="form-tabs">
-          <button class="form-tab active" id="tabWaitlist" onclick="switchForm('waitlist')">Join Waitlist</button>
+          <button class="form-tab active" id="tabWaitlist" onclick="switchForm('waitlist')">Join Beta</button>
           <button class="form-tab" id="tabDemo" onclick="switchForm('demo')">Book a Demo</button>
         </div>
 
         <form class="waitlist-form" id="waitlistForm" novalidate>
-          <input type="email" class="waitlist-input" placeholder="you@example.com" id="emailInput" autocomplete="email" />
-          <button type="submit" class="btn btn-primary" id="waitlistBtn" style="padding:14px 24px;font-size:0.9rem;border-radius:12px;white-space:nowrap">Join Waitlist →</button>
+          <input type="checkbox" name="botcheck" class="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <input type="text" class="waitlist-input" placeholder="Your name" id="waitlistName" autocomplete="name" />
+          <div class="waitlist-form-row">
+            <input type="email" class="waitlist-input" placeholder="Enter your email" id="emailInput" autocomplete="email" />
+            <button type="submit" class="waitlist-btn" id="waitlistBtn">Join beta</button>
+          </div>
         </form>
 
         <form class="demo-form" id="demoForm" novalidate>
+          <input type="checkbox" name="botcheck" class="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" />
           <input type="text" class="waitlist-input" placeholder="Your name" id="demoName" autocomplete="name" />
           <input type="email" class="waitlist-input" placeholder="you@example.com" id="demoEmail" autocomplete="email" />
           <input type="text" class="waitlist-input" placeholder="Company (optional)" id="demoCompany" autocomplete="organization" />
-          <button type="submit" class="btn btn-primary" id="demoBtn" style="padding:14px 24px;font-size:0.9rem;border-radius:12px">Request Demo →</button>
+          <button type="submit" class="waitlist-btn" id="demoBtn">Request Demo →</button>
         </form>
 
         <div class="form-feedback success-msg" id="successMsg" role="status" aria-live="polite">
           <div class="feedback-icon">✓</div>
           <div class="feedback-text">
-            <strong id="successTitle">You're on the list!</strong>
-            <span id="successBody">We'll reach out when Arivo OS launches.</span>
+            <strong id="successTitle">You're in the beta!</strong>
+            <span id="successBody">We'll email you when early access opens — plus your complimentary 1-month trial.</span>
           </div>
         </div>
         <div class="form-feedback error-msg" id="errorMsg" role="alert">
@@ -568,9 +586,33 @@
             <span>Please try again or email <a href="mailto:akhileshgoswami@arivoai.in">akhileshgoswami@arivoai.in</a></span>
           </div>
         </div>
-        <div class="waitlist-count">
-          <span>🚀</span> Be among the first to get early access
-        </div>
+
+        <ul class="waitlist-perks">
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="20 12 20 22 4 22 4 12"></polyline>
+              <rect x="2" y="7" width="20" height="5"></rect>
+              <line x1="12" y1="22" x2="12" y2="7"></line>
+              <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path>
+              <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
+            </svg>
+            Free 1-month trial at launch
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+            Bank-grade security
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+            Early access priority
+          </li>
+        </ul>
+
       </div>
     </div>
   </section>
@@ -613,6 +655,7 @@
     </div>
   </footer>
 
-  <script src="/assets/js/main.js?v=4"></script>
+  <script src="/assets/js/form-config.js?v=8"></script>
+  <script src="/assets/js/main.js?v=8"></script>
 </body>
 </html>

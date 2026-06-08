@@ -30,9 +30,23 @@ Changes pushed to `main` are published automatically (may take 1–2 minutes).
 
 ## Forms & email
 
-Waitlist and demo submissions are sent to `akhileshgoswami@arivoai.in` via [FormSubmit](https://formsubmit.co).
+Beta and demo submissions are sent via [Web3Forms](https://web3forms.com) to `akhileshgoswami@arivoai.in`.
 
-On first submission, check that inbox and click **Activate Form** in the FormSubmit confirmation email.
+**One-time setup (required):**
+
+1. Go to [web3forms.com](https://web3forms.com) and enter `akhileshgoswami@arivoai.in`
+2. Copy the access key from your inbox
+3. Paste it in `assets/js/form-config.js`:
+
+```js
+window.ARIVO_FORM = {
+  web3formsAccessKey: 'YOUR_KEY_HERE',
+};
+```
+
+4. Push to GitHub — forms will work on the live site
+
+> FormSubmit was replaced because their servers were returning errors (HTTP 521).
 
 ## Local preview
 

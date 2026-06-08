@@ -1,6 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const OWNER_EMAIL = 'akhileshgoswami@arivoai.in';
-
   const phones = document.querySelectorAll('.phone-wrap');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -45,22 +43,34 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   async function sendToInbox(data) {
-    const response = await fetch(`https://formsubmit.co/ajax/${OWNER_EMAIL}`, {
+    const accessKey = window.ARIVO_FORM?.web3formsAccessKey?.trim();
+    if (!accessKey) {
+      throw new Error('Form access key not configured');
+    }
+
+    const response = await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
       },
       body: JSON.stringify({
-        ...data,
-        _to: OWNER_EMAIL,
-        _captcha: 'false',
-        _template: 'table',
+        access_key: accessKey,
+        subject: data._subject || 'New Arivo OS Submission',
+        from_name: 'Arivo OS Website',
+        name: data.Name,
+        email: data.Email,
+        company: data.Company,
+        type: data.type,
+        botcheck: '',
       }),
     });
 
-    if (!response.ok) throw new Error('Submission failed');
-    return response.json();
+    const result = await response.json();
+    if (!response.ok || !result.success) {
+      throw new Error(result.message || 'Submission failed');
+    }
+    return result;
   }
 
   function hideFeedback() {
@@ -97,12 +107,19 @@ document.addEventListener('DOMContentLoaded', () => {
   async function handleWaitlist(event) {
     event.preventDefault();
 
-    const input = document.getElementById('emailInput');
+    const nameInput = document.getElementById('waitlistName');
+    const emailInput = document.getElementById('emailInput');
     const btn = document.getElementById('waitlistBtn');
-    const email = input.value.trim();
+    const name = nameInput.value.trim();
+    const email = emailInput.value.trim();
+
+    if (!name) {
+      markInvalid(nameInput);
+      return;
+    }
 
     if (!isValidEmail(email)) {
-      markInvalid(input);
+      markInvalid(emailInput);
       return;
     }
 
@@ -112,20 +129,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     try {
       await sendToInbox({
-        'Waitlist Email': email,
-        type: 'Waitlist Signup',
-        _subject: 'New Arivo OS Waitlist Signup',
-        _replyto: email,
+        Name: name,
+        Email: email,
+        type: 'Beta Waitlist Signup',
+        _subject: 'New Arivo OS Beta Signup',
       });
 
       hideForms();
-      showSuccess("You're on the list!", "We'll reach out when Arivo OS launches.");
-      input.value = '';
+      showSuccess(
+        "You're in the beta!",
+        "We'll email you when early access opens — plus your complimentary 1-month trial."
+      );
+      nameInput.value = '';
+      emailInput.value = '';
     } catch {
       showError();
     } finally {
       btn.disabled = false;
-      btn.textContent = 'Join Waitlist →';
+      btn.textContent = 'Join beta';
     }
   }
 
