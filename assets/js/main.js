@@ -198,11 +198,15 @@ document.addEventListener('DOMContentLoaded', () => {
   function fitVideoCrop() {
     if (!productVideo?.videoWidth || !productVideoInner) return;
 
-    const containerRatio = productVideoInner.clientWidth / productVideoInner.clientHeight;
     const videoRatio = productVideo.videoWidth / productVideo.videoHeight;
-    const scale = Math.max(containerRatio / videoRatio, 1.72);
 
-    productVideoInner.style.setProperty('--video-scale', scale.toFixed(2));
+    // Portrait recording with black bar on the right — keep focus on the app UI
+    let focusX = 28;
+    if (videoRatio < 0.65) focusX = 24;
+    else if (videoRatio > 0.85) focusX = 34;
+    if (window.innerWidth <= 640) focusX -= 2;
+
+    productVideoInner.style.setProperty('--video-focus', `${focusX}% center`);
   }
 
   if (productVideo && videoSoundToggle) {

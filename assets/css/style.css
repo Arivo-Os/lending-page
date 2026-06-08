@@ -328,11 +328,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: left center;
-      transform: scale(var(--video-scale, 1.72));
-      transform-origin: left center;
-      -webkit-transform: scale(var(--video-scale, 1.72));
-      -webkit-transform-origin: left center;
+      object-position: var(--video-focus, 28% center);
       display: block;
     }
 
@@ -1477,9 +1473,6 @@
       .phone-wrap-video {
         width: min(260px, calc(100vw - 32px));
       }
-      .showcase-video-player {
-        --video-scale: 1.75;
-      }
     }
 
     @media (max-width: 640px) {
@@ -1489,9 +1482,6 @@
       .nav-cta .btn-ghost { display: none; }
       .phone-wrap-video {
         width: min(240px, calc(100vw - 32px));
-      }
-      .showcase-video-player {
-        --video-scale: 1.78;
       }
       .showcase-video { margin-bottom: 40px; padding: 0 16px; }
       .video-sound-toggle {
