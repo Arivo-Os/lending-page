@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
       showError();
     } finally {
       btn.disabled = false;
-      btn.textContent = 'Join beta';
+      btn.textContent = 'Join waitlist';
     }
   }
 
