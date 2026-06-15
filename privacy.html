@@ -3,129 +3,214 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Privacy Policy · Arivo OS</title>
-  <meta name="description" content="Privacy Policy for Arivo OS beta list and email communications." />
+  <title>Privacy Policy | Arivo</title>
+  <meta name="description" content="How Arivo collects, uses, and protects your personal and financial data during beta." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://arivoai.in/privacy.html" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/css/style.css?v=4" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/arivo.css?v=5" />
   <link rel="icon" href="assets/images/favicon.png" type="image/png" sizes="32x32" />
-  <meta name="theme-color" content="#050c1a" />
+  <meta name="theme-color" content="#09090b" />
 </head>
 <body>
 
-  <nav>
-    <a href="index.html" class="nav-logo">
-      <img class="logo-icon" src="assets/images/logo.png" alt="Arivo OS" width="34" height="34" />
-      <span>Arivo OS</span>
-    </a>
-    <div class="nav-cta">
-      <a href="index.html#waitlist" class="btn btn-primary">Join Beta List</a>
+  <div class="scroll-progress" aria-hidden="true"><div class="scroll-progress-bar"></div></div>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="nav-shell">
+      <nav aria-label="Main navigation">
+        <a href="index.html" class="nav-logo">
+          <img class="logo-icon" src="assets/images/logo.png" alt="Arivo logo" width="34" height="34" />
+          <span>Arivo</span>
+        </a>
+        <div class="nav-right" id="navMenu">
+          <a href="index.html#product" class="nav-link nav-link-hide-mobile">Product</a>
+          <a href="index.html#play" class="nav-link nav-link-hide-mobile">Simulator</a>
+          <a href="index.html#blog" class="nav-link">Blog</a>
+          <div class="nav-cta">
+            <a href="index.html#waitlist" class="btn btn-ghost btn-sm">Book a Demo</a>
+            <a href="index.html#waitlist" class="btn btn-primary btn-sm">Get Early Access</a>
+          </div>
+        </div>
+        <button type="button" class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
     </div>
-  </nav>
+  </header>
 
-  <main class="legal-page">
-    <div class="container">
-      <div class="legal-header">
-        <div class="section-label">Legal</div>
-        <h1>Privacy Policy</h1>
-        <p class="legal-updated">Last updated: June 2026</p>
+  <main class="legal-page" id="main-content">
+
+    <div class="legal-hero">
+      <div class="hero-mesh" aria-hidden="true"></div>
+      <div class="grid-bg" aria-hidden="true"></div>
+      <div class="container">
+        <div class="legal-header reveal">
+          <div class="section-label">Legal</div>
+          <h1>Privacy Policy</h1>
+          <p class="legal-meta">Last updated June 15, 2026 · Applies to Arivo website &amp; beta</p>
+          <nav class="legal-tabs" aria-label="Legal documents">
+            <a href="privacy.html" class="legal-tab is-active" aria-current="page">Privacy</a>
+            <a href="terms.html" class="legal-tab">Terms</a>
+          </nav>
+        </div>
       </div>
+    </div>
 
-      <article class="legal-content">
-        <section class="legal-section">
-          <h2>1. Information we collect</h2>
-          <p>We collect only your email address when you sign up via our beta list form. We do not collect any other personal information unless you voluntarily provide it.</p>
+    <div class="container legal-layout">
+      <aside class="legal-toc reveal" aria-label="Table of contents">
+        <p class="legal-toc-title">On this page</p>
+        <nav class="legal-toc-list" id="legalToc">
+          <a href="#introduction">Introduction</a>
+          <a href="#information-we-collect">Information we collect</a>
+          <a href="#financial-data">Financial data</a>
+          <a href="#how-we-use">How we use data</a>
+          <a href="#security">Security</a>
+          <a href="#sharing">Sharing</a>
+          <a href="#cookies">Cookies</a>
+          <a href="#your-rights">Your rights</a>
+          <a href="#retention">Retention</a>
+          <a href="#changes">Changes</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </aside>
+
+      <article class="legal-content reveal-stagger">
+        <section class="legal-section" id="introduction">
+          <h2>1. Introduction</h2>
+          <p>Arivo ("we", "us", "our") is India's Financial Decision Engine — a platform that helps you understand and act on your money. This Privacy Policy explains how we collect, use, store, and protect your information when you visit <a href="https://arivoai.in">arivoai.in</a>, join our beta waitlist, book a demo, or use the Arivo product during beta.</p>
+          <p>By using our website or services, you agree to this policy. Please also read our <a href="terms.html">Terms &amp; Conditions</a>.</p>
         </section>
 
-        <section class="legal-section">
-          <h2>2. How we use your information</h2>
-          <p>Your email address is used exclusively to send you product updates, launch announcements, and relevant communications. We do not use your data for profiling, advertising, or any automated decision-making.</p>
+        <section class="legal-section" id="information-we-collect">
+          <h2>2. Information we collect</h2>
+          <p>Depending on how you interact with Arivo, we may collect:</p>
+          <ul>
+            <li><strong>Contact details</strong> — name, email address, and optionally company name when you join the beta list or request a demo.</li>
+            <li><strong>Account information</strong> — login credentials and profile details if you create an Arivo beta account.</li>
+            <li><strong>Usage data</strong> — how you interact with our website and app, including pages visited, features used, and device/browser information.</li>
+            <li><strong>Communications</strong> — messages you send us, feedback you provide, and support requests.</li>
+          </ul>
         </section>
 
-        <section class="legal-section">
-          <h2>3. Data storage and security</h2>
-          <p>Your email is stored on secure servers with appropriate technical and organizational safeguards in place. We take reasonable measures to protect your data from unauthorized access, loss, or misuse.</p>
+        <section class="legal-section" id="financial-data">
+          <h2>3. Financial data &amp; Account Aggregator</h2>
+          <p>If you connect financial accounts during beta, we access financial information through India's RBI-regulated Account Aggregator (AA) framework. This may include bank balances, transaction history, credit card summaries, loan/EMI details, and investment holdings — only with your explicit consent.</p>
+          <p>We use this data solely to generate financial insights, due-date alerts, bill/EMI reminders, and actionable recommendations within Arivo. We do not sell your financial data.</p>
         </section>
 
-        <section class="legal-section">
-          <h2>4. Sharing of data</h2>
-          <p>We do not sell, trade, or share your personal data with any third parties for their own marketing purposes. Data may only be shared with trusted service providers who assist us in operating our platform, strictly under confidentiality agreements.</p>
+        <section class="legal-section" id="how-we-use">
+          <h2>4. How we use your information</h2>
+          <p>We use your information to:</p>
+          <ul>
+            <li>Provide, operate, and improve the Arivo platform</li>
+            <li>Send beta access links, product updates, and service communications</li>
+            <li>Generate personalised money decisions and reminders</li>
+            <li>Respond to your enquiries and support requests</li>
+            <li>Maintain security, prevent fraud, and comply with legal obligations</li>
+          </ul>
+          <p>We do not use your data for third-party advertising or automated profiling unrelated to our services.</p>
         </section>
 
-        <section class="legal-section">
-          <h2>5. Cookies</h2>
-          <p>Our website may use essential cookies to ensure basic functionality. We do not use tracking or advertising cookies without your consent.</p>
+        <section class="legal-section" id="security">
+          <h2>5. Data storage &amp; security</h2>
+          <p>Your data is stored on secure infrastructure with encryption in transit and at rest. We implement access controls, monitoring, and industry-standard safeguards appropriate for financial technology products.</p>
+          <p>While we take reasonable measures to protect your information, no method of transmission or storage is 100% secure. We encourage you to use strong passwords and keep your account credentials confidential.</p>
         </section>
 
-        <section class="legal-section">
-          <h2>6. Your rights</h2>
-          <p>You have the right to access, correct, or request deletion of your personal data at any time. To exercise these rights, contact us at <a href="mailto:akhileshgoswami@arivoai.in">akhileshgoswami@arivoai.in</a>. If you are in the EU/EEA, you also have the right to lodge a complaint with your local data protection authority.</p>
+        <section class="legal-section" id="sharing">
+          <h2>6. Sharing of data</h2>
+          <p>We do not sell your personal or financial data. We may share information only with:</p>
+          <ul>
+            <li><strong>Service providers</strong> — trusted partners who help us operate (hosting, email delivery, analytics) under strict confidentiality agreements</li>
+            <li><strong>Regulated infrastructure</strong> — Account Aggregators, banks, and payment networks as required to deliver the service you consented to</li>
+            <li><strong>Legal requirements</strong> — when required by law, court order, or to protect our rights and users' safety</li>
+          </ul>
         </section>
 
-        <section class="legal-section">
-          <h2>7. Retention</h2>
-          <p>We retain your email address only for as long as necessary to fulfil the purpose for which it was collected, or until you unsubscribe.</p>
+        <section class="legal-section" id="cookies">
+          <h2>7. Cookies &amp; analytics</h2>
+          <p>Our website uses essential cookies for basic functionality. We may use privacy-conscious analytics to understand how visitors use our site. We do not use advertising or cross-site tracking cookies without your consent.</p>
+          <p>You can control cookies through your browser settings. Disabling cookies may affect some website features.</p>
         </section>
 
-        <section class="legal-section">
-          <h2>8. Third-party links</h2>
-          <p>Our website may contain links to third-party sites. We are not responsible for the privacy practices of those sites and encourage you to review their policies separately.</p>
+        <section class="legal-section" id="your-rights">
+          <h2>8. Your rights</h2>
+          <p>You have the right to access, correct, or delete your personal data. You may withdraw consent for financial data access at any time through the app or by contacting us. You can unsubscribe from marketing emails using the link in any email we send.</p>
+          <p>If you are in the EU/EEA or other jurisdictions with data protection laws, you may have additional rights including data portability and the right to lodge a complaint with your local authority.</p>
         </section>
 
-        <section class="legal-section">
-          <h2>9. Updates to this policy</h2>
-          <p>We may revise this Privacy Policy occasionally. Any material changes will be communicated to you via email or a notice on our website.</p>
+        <section class="legal-section" id="retention">
+          <h2>9. Data retention</h2>
+          <p>We retain your information only as long as necessary to provide our services, comply with legal obligations, or resolve disputes. Waitlist emails are removed upon unsubscribe. Financial data is deleted or anonymised when you close your account or withdraw consent, subject to regulatory retention requirements.</p>
         </section>
 
-        <section class="legal-section">
-          <h2>10. Contact</h2>
-          <p>For any privacy-related queries, reach us at <a href="mailto:akhileshgoswami@arivoai.in">akhileshgoswami@arivoai.in</a>.</p>
+        <section class="legal-section" id="changes">
+          <h2>10. Changes to this policy</h2>
+          <p>We may update this Privacy Policy as our product evolves. Material changes will be communicated via email or a notice on our website. Continued use after changes constitutes acceptance of the updated policy.</p>
+        </section>
+
+        <section class="legal-section" id="contact">
+          <h2>11. Contact</h2>
+          <p>For privacy-related questions or to exercise your rights, contact us at <a href="mailto:akhileshgoswami@arivoai.in">akhileshgoswami@arivoai.in</a>.</p>
         </section>
       </article>
-
-      <div class="legal-back">
-        <a href="index.html" class="btn btn-ghost">← Back to home</a>
-      </div>
     </div>
+
+    <div class="container legal-back">
+      <a href="index.html" class="btn btn-ghost">← Back to home</a>
+    </div>
+
   </main>
 
-  <footer>
-    <div class="container">
-      <div class="footer-inner">
-        <div class="footer-left">
-          <a href="index.html" class="nav-logo" style="font-size:1rem">
-            <img class="logo-icon logo-icon-sm" src="assets/images/logo.png" alt="Arivo OS" width="28" height="28" />
-            <span>Arivo OS</span>
-          </a>
-          <div class="footer-copy">© 2026 Arivo OS. All rights reserved.</div>
-        </div>
-        <div class="footer-links">
-          <div class="footer-social">
-            <a href="mailto:akhileshgoswami@arivoai.in" class="icon-link icon-link-sm" aria-label="Email Akhilesh Goswami" title="Email">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
-                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-              </svg>
-            </a>
-            <a href="https://www.linkedin.com/in/akhilesh-goswami/" target="_blank" rel="noopener noreferrer" class="icon-link icon-link-sm" aria-label="Akhilesh Goswami on LinkedIn" title="Personal LinkedIn">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path>
-              </svg>
-            </a>
-            <a href="https://www.linkedin.com/company/arivo-os/?viewAsMember=true" target="_blank" rel="noopener noreferrer" class="icon-link icon-link-sm icon-link-company" aria-label="Arivo OS on LinkedIn" title="Company LinkedIn">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path>
-              </svg>
-            </a>
-          </div>
-          <a href="terms.html" class="footer-link">Terms &amp; Conditions</a>
-          <a href="privacy.html" class="footer-link">Privacy Policy</a>
-        </div>
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <img class="logo-icon logo-icon-sm" src="assets/images/logo.png" alt="Arivo logo" width="28" height="28" />
+          <span>Arivo</span>
+        </a>
+        <p class="footer-tagline">India's Financial Decision Engine. We don't show you your money — we run it.</p>
+        <p class="footer-copy">© 2026 Arivo. All rights reserved.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a href="index.html#product">Decision engine</a>
+        <a href="index.html#play">Simulator</a>
+        <a href="index.html#waitlist">Early access</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="index.html#blog">Blog</a>
+        <a href="index.html#team">Team</a>
+        <a href="mailto:akhileshgoswami@arivoai.in">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-social">
+        <a href="mailto:akhileshgoswami@arivoai.in" class="icon-link icon-link-sm" aria-label="Email" title="Email">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+        </a>
+        <a href="https://www.linkedin.com/company/arivo-os/" target="_blank" rel="noopener noreferrer" class="icon-link icon-link-sm" aria-label="Arivo on LinkedIn" title="LinkedIn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg>
+        </a>
+        <a href="https://medium.com/@akhileshgoswami_10630" target="_blank" rel="noopener noreferrer" class="icon-link icon-link-sm" aria-label="Medium" title="Medium">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"></path></svg>
+        </a>
       </div>
     </div>
   </footer>
 
-  <script src="/assets/js/main.js?v=4"></script>
+  <script src="/assets/js/main.js?v=19"></script>
+  <script src="/assets/js/legal.js?v=1"></script>
 </body>
 </html>
