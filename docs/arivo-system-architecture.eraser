@@ -1,0 +1,321 @@
+// =============================================================================
+// Arivo — AI-Powered Financial Operating System for India
+// Production System Architecture Diagram
+// =============================================================================
+// HOW TO USE IN ERASER.IO:
+//   1. Go to https://app.eraser.io
+//   2. Create a new file → Insert → Cloud Architecture Diagram
+//   3. Paste this entire file into the diagram code editor
+//   4. Eraser will auto-render the layered architecture with data flows
+// =============================================================================
+
+direction down
+colorMode bold
+typeface clean
+styleMode plain
+
+// ─────────────────────────────────────────────────────────────────────────────
+// LAYER 1 — USER LAYER
+// ─────────────────────────────────────────────────────────────────────────────
+UserLayer [label: "1. User Layer", icon: users, color: blue] {
+  RetailUser [label: "Retail Users", icon: user]
+  PowerUser [label: "Power Users", icon: user-check]
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// LAYER 2 — FRONTEND LAYER
+// ─────────────────────────────────────────────────────────────────────────────
+FrontendLayer [label: "2. Frontend Layer", icon: monitor, color: blue] {
+  FlutterApp [label: "Flutter Mobile App", icon: flutter, color: blue]
+  ReactWeb [label: "React Web App (Future)", icon: react, color: blue]
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// LAYER 3 — AUTHENTICATION LAYER
+// ─────────────────────────────────────────────────────────────────────────────
+AuthLayer [label: "3. Authentication Layer", icon: lock, color: orange] {
+  FirebaseAuth [label: "Firebase Authentication", icon: firebase, color: orange]
+  MobileOTP [label: "Mobile OTP Login", icon: smartphone, color: orange]
+  JWTGen [label: "JWT Token Generation", icon: key, color: orange]
+  SessionMgmt [label: "Session Management", icon: clock, color: orange]
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// LAYER 4 — BACKEND SERVICES LAYER (NestJS on GCP Cloud Run)
+// ─────────────────────────────────────────────────────────────────────────────
+BackendLayer [label: "4. Backend Services Layer", icon: server, color: purple] {
+  NestJSAPI [label: "NestJS API Server", icon: nestjs, color: purple]
+  APIGateway [label: "API Gateway", icon: gcp-api-gateway, color: purple]
+
+  CoreServices [label: "Core Services", color: purple] {
+    UserSvc [label: "User Service", icon: user]
+    ProfileSvc [label: "Profile Service", icon: id-card]
+    ConsentSvc [label: "Consent Service", icon: file-check]
+  }
+
+  FinancialServices [label: "Financial Services", color: purple] {
+    AccountSvc [label: "Account Service", icon: wallet]
+    TransactionSvc [label: "Transaction Service", icon: receipt]
+    InvestmentSvc [label: "Investment Service", icon: trending-up]
+    InsuranceSvc [label: "Insurance Service", icon: shield]
+    LoanSvc [label: "Loan Service", icon: credit-card]
+    NetWorthSvc [label: "Net Worth Service", icon: pie-chart]
+    GoalSvc [label: "Goal Planning Service", icon: target]
+  }
+
+  IntelligenceServices [label: "Intelligence & Ops", color: purple] {
+    AIInsightsSvc [label: "AI Insights Service", icon: brain]
+    NotificationSvc [label: "Notification Service", icon: bell]
+    AdminSvc [label: "Admin Service", icon: settings]
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// LAYER 5 — ACCOUNT AGGREGATOR LAYER (Setu)
+// ─────────────────────────────────────────────────────────────────────────────
+AALayer [label: "5. Account Aggregator Layer", icon: link, color: green] {
+  SetuAA [label: "Setu Account Aggregator", icon: link-2, color: green]
+  ConsentCreate [label: "Consent Creation", icon: file-plus, color: green]
+  ConsentMgmt [label: "Consent Management", icon: file-text, color: green]
+  DataFetchAPI [label: "Data Fetch APIs", icon: download, color: green]
+  WebhookProc [label: "Webhook Processing", icon: webhook, color: green]
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// LAYER 6 — EXTERNAL FINANCIAL INSTITUTIONS
+// ─────────────────────────────────────────────────────────────────────────────
+FILayer [label: "6. Financial Institutions Layer", icon: building, color: gray] {
+  Banks [label: "Banks", icon: landmark]
+  MutualFunds [label: "Mutual Funds", icon: bar-chart-2]
+  InsuranceCos [label: "Insurance Companies", icon: shield]
+  LoanProviders [label: "Loan Providers", icon: banknote]
+  FixedDeposits [label: "Fixed Deposits", icon: piggy-bank]
+  PensionAccounts [label: "Pension Accounts", icon: briefcase]
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// LAYER 7 — DATA PROCESSING LAYER
+// ─────────────────────────────────────────────────────────────────────────────
+ProcessingLayer [label: "7. Data Processing Layer", icon: cpu, color: yellow] {
+  NormEngine [label: "Data Normalization Engine", icon: filter, color: yellow]
+  CatEngine [label: "Transaction Categorization Engine", icon: tag, color: yellow]
+  CashFlowEngine [label: "Cash Flow Engine", icon: activity, color: yellow]
+  NetWorthCalc [label: "Net Worth Calculator", icon: calculator, color: yellow]
+  HealthScoreEngine [label: "Financial Health Score Engine", icon: heart-pulse, color: yellow]
+  RiskEngine [label: "Risk Analysis Engine", icon: alert-triangle, color: yellow]
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// LAYER 8 — DATABASE & CACHING LAYER
+// ─────────────────────────────────────────────────────────────────────────────
+DataLayer [label: "8. Database & Caching Layer", icon: database, color: blue] {
+  PostgreSQL [label: "PostgreSQL (Cloud SQL)", icon: postgresql, color: blue] {
+    UsersDB [label: "Users"]
+    ConsentsDB [label: "Consents"]
+    AccountsDB [label: "Accounts"]
+    TransactionsDB [label: "Transactions"]
+    InvestmentsDB [label: "Investments"]
+    InsuranceDB [label: "Insurance"]
+    LoansDB [label: "Loans"]
+    GoalsDB [label: "Goals"]
+    NotificationsDB [label: "Notifications"]
+  }
+
+  Redis [label: "Redis (Memorystore)", icon: redis, color: red] {
+    SessionCache [label: "Session Cache"]
+    DashboardCache [label: "Dashboard Cache"]
+    AIResponseCache [label: "AI Response Cache"]
+  }
+
+  GCS [label: "Google Cloud Storage", icon: gcp-cloud-storage, color: blue] {
+    Reports [label: "Reports"]
+    Statements [label: "Statements"]
+    UserDocs [label: "User Documents"]
+    InsuranceDocs [label: "Insurance Documents"]
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// LAYER 9 — AI LAYER
+// ─────────────────────────────────────────────────────────────────────────────
+AILayer [label: "9. AI Layer", icon: sparkles, color: violet] {
+  GeminiAPI [label: "Gemini API", icon: google, color: violet]
+  OpenAIAPI [label: "OpenAI API", icon: openai, color: violet]
+  ContextBuilder [label: "Financial Context Builder", icon: layers, color: violet]
+  AICopilot [label: "AI Financial Copilot", icon: bot, color: violet]
+  SpendingInsights [label: "Spending Insights", icon: pie-chart]
+  SavingsRecs [label: "Savings Recommendations", icon: lightbulb]
+  GoalPlanningAI [label: "Goal Planning AI", icon: flag]
+  InvestInsights [label: "Investment Insights", icon: line-chart]
+  PersonalRecs [label: "Personalized Recommendations", icon: star]
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// LAYER 10 — NOTIFICATION LAYER
+// ─────────────────────────────────────────────────────────────────────────────
+NotifLayer [label: "10. Notification Layer", icon: send, color: red] {
+  FCM [label: "Firebase Cloud Messaging", icon: firebase, color: red]
+  EmailSvc [label: "Email Service", icon: mail, color: red]
+  InAppNotif [label: "In-App Notifications", icon: bell-ring, color: red]
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// LAYER 11 — MONITORING & SECURITY LAYER
+// ─────────────────────────────────────────────────────────────────────────────
+MonitorSecurityLayer [label: "11. Monitoring & Security Layer", icon: shield-check, color: gray] {
+  Monitoring [label: "Monitoring", color: gray] {
+    FirebaseAnalytics [label: "Firebase Analytics", icon: firebase]
+    GCPMonitoring [label: "Google Cloud Monitoring", icon: gcp-cloud-monitoring]
+    CloudLogging [label: "Cloud Logging", icon: gcp-cloud-logging]
+    Sentry [label: "Sentry", icon: sentry]
+  }
+
+  Security [label: "Security", color: gray] {
+    TLSEnc [label: "TLS Encryption", icon: lock]
+    JWTAuth [label: "JWT Authentication", icon: key]
+    RBAC [label: "RBAC", icon: users]
+    ConsentAccess [label: "Consent-Based Data Access", icon: file-check]
+    AuditLogs [label: "Audit Logs", icon: clipboard-list]
+    EncryptRest [label: "Encryption At Rest", icon: database]
+    EncryptTransit [label: "Encryption In Transit", icon: arrow-right-left]
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// LAYER 12 — ADMIN LAYER
+// ─────────────────────────────────────────────────────────────────────────────
+AdminLayer [label: "12. Admin Layer", icon: layout-dashboard, color: indigo] {
+  AdminDashboard [label: "Admin Dashboard", icon: layout-dashboard, color: indigo]
+  UserMgmt [label: "User Management", icon: user-cog]
+  ConsentMonitor [label: "Consent Monitoring", icon: eye]
+  CustSupport [label: "Customer Support", icon: headset]
+  AdminAuditLogs [label: "Audit Logs", icon: scroll-text]
+  AnalyticsDash [label: "Analytics Dashboard", icon: bar-chart]
+  SystemHealth [label: "System Health Monitoring", icon: heart-pulse]
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// INFRASTRUCTURE LAYER (GCP)
+// ─────────────────────────────────────────────────────────────────────────────
+InfraLayer [label: "Infrastructure — Google Cloud Platform", icon: google-cloud, color: blue] {
+  CloudRun [label: "Cloud Run", icon: gcp-cloud-run]
+  CloudSQL [label: "Cloud SQL", icon: gcp-cloud-sql]
+  Memorystore [label: "Memorystore Redis", icon: gcp-memorystore]
+  CloudStorage [label: "Cloud Storage", icon: gcp-cloud-storage]
+  SecretManager [label: "Secret Manager", icon: gcp-secret-manager]
+  CloudScheduler [label: "Cloud Scheduler", icon: gcp-cloud-scheduler]
+  PubSub [label: "Pub/Sub", icon: gcp-pubsub]
+}
+
+// =============================================================================
+// DATA FLOW — USER LOGIN TO INSIGHTS
+// =============================================================================
+
+// 1. User → Frontend
+RetailUser, PowerUser > FlutterApp, ReactWeb: App Access
+
+// 2. Frontend → Authentication
+FlutterApp, ReactWeb > FirebaseAuth: Login Request
+FirebaseAuth > MobileOTP: Send OTP
+MobileOTP > FirebaseAuth: Verify OTP
+FirebaseAuth > JWTGen: Issue Token
+JWTGen > SessionMgmt: Create Session
+SessionMgmt > FlutterApp, ReactWeb: JWT + Session
+
+// 3. Frontend → Backend (authenticated)
+FlutterApp, ReactWeb > APIGateway: API Requests (JWT)
+APIGateway > NestJSAPI: Route & Validate
+NestJSAPI > UserSvc, ProfileSvc
+
+// 4. Consent & Account Aggregation Flow
+FlutterApp, ReactWeb > ConsentSvc: Grant Consent
+ConsentSvc > ConsentCreate: Create AA Consent
+ConsentCreate > SetuAA: Consent API
+SetuAA > ConsentMgmt: Manage Lifecycle
+ConsentMgmt > DataFetchAPI: Trigger Fetch
+DataFetchAPI > Banks, MutualFunds, InsuranceCos, LoanProviders, FixedDeposits, PensionAccounts: Fetch Financial Data
+Banks, MutualFunds, InsuranceCos, LoanProviders, FixedDeposits, PensionAccounts > SetuAA: Account Data
+SetuAA > WebhookProc: Data Webhooks
+WebhookProc > AccountSvc, TransactionSvc, InvestmentSvc, InsuranceSvc, LoanSvc: Ingest Raw Data
+
+// 5. Data Processing Pipeline
+AccountSvc, TransactionSvc, InvestmentSvc, InsuranceSvc, LoanSvc > NormEngine: Raw Data
+NormEngine > CatEngine: Normalized Data
+CatEngine > CashFlowEngine: Categorized Transactions
+CashFlowEngine > NetWorthCalc: Cash Flow Analysis
+NetWorthCalc > HealthScoreEngine: Net Worth
+HealthScoreEngine > RiskEngine: Health Score
+RiskEngine > NetWorthSvc, GoalSvc: Processed Metrics
+
+// 6. Persistence & Caching
+UserSvc > UsersDB
+ConsentSvc > ConsentsDB
+AccountSvc > AccountsDB
+TransactionSvc > TransactionsDB
+InvestmentSvc > InvestmentsDB
+InsuranceSvc > InsuranceDB
+LoanSvc > LoansDB
+GoalSvc > GoalsDB
+NotificationSvc > NotificationsDB
+
+SessionMgmt > SessionCache
+NetWorthSvc > DashboardCache
+AIInsightsSvc > AIResponseCache
+
+AccountSvc > Statements
+InsuranceSvc > InsuranceDocs
+NetWorthSvc > Reports
+ProfileSvc > UserDocs
+
+// 7. AI Insights Flow
+NetWorthSvc, TransactionSvc, InvestmentSvc, GoalSvc > ContextBuilder: Financial Context
+ContextBuilder > AIInsightsSvc: Enriched Context
+AIInsightsSvc > GeminiAPI, OpenAIAPI: LLM Inference
+GeminiAPI, OpenAIAPI > AICopilot: Model Response
+AICopilot > SpendingInsights, SavingsRecs, GoalPlanningAI, InvestInsights, PersonalRecs
+SpendingInsights, SavingsRecs, GoalPlanningAI, InvestInsights, PersonalRecs > FlutterApp, ReactWeb: AI Insights
+
+// 8. Notification Flow
+AIInsightsSvc > NotificationSvc: Insight Alerts
+TransactionSvc > NotificationSvc: Transaction Alerts
+GoalSvc > NotificationSvc: Goal Milestones
+NotificationSvc > FCM, EmailSvc, InAppNotif: Dispatch
+FCM > FlutterApp: Push Notifications
+EmailSvc > RetailUser, PowerUser: Email Alerts
+InAppNotif > FlutterApp, ReactWeb: In-App Alerts
+
+// 9. Admin Flow
+AdminDashboard > AdminSvc: Admin Operations
+AdminSvc > UserMgmt, ConsentMonitor, CustSupport, AdminAuditLogs, AnalyticsDash, SystemHealth
+AdminSvc > UserSvc, ConsentSvc, AuditLogs
+
+// 10. Async Event Processing
+WebhookProc --> PubSub: Publish Events
+PubSub --> NormEngine: Async Processing
+CloudScheduler --> DataFetchAPI: Scheduled Data Refresh
+CloudScheduler --> AIInsightsSvc: Scheduled Insight Generation
+
+// 11. Infrastructure Bindings
+NestJSAPI > CloudRun
+PostgreSQL > CloudSQL
+Redis > Memorystore
+GCS > CloudStorage
+NestJSAPI > SecretManager: Secrets
+APIGateway > TLSEnc: HTTPS
+
+// 12. Monitoring & Security (cross-cutting)
+NestJSAPI > GCPMonitoring, CloudLogging, Sentry: Observability
+FlutterApp > FirebaseAnalytics: User Analytics
+BackendLayer > JWTAuth, RBAC, ConsentAccess, AuditLogs, EncryptRest, EncryptTransit: Security Controls
+
+// =============================================================================
+// LEGEND
+// =============================================================================
+legend [position: bottom-right] {
+  [connection: >, color: blue, label: "Synchronous Request"]
+  [connection: -->, color: orange, label: "Async / Event-Driven"]
+  [color: green, label: "Account Aggregator"]
+  [color: purple, label: "Backend Services"]
+  [color: violet, label: "AI Layer"]
+  [icon: google-cloud, label: "GCP Infrastructure"]
+}

@@ -1,0 +1,678 @@
+// =============================================================================
+// Arivo — PostgreSQL Entity Relationship Diagram (3NF Normalized)
+// AI-Powered Financial Operating System for India
+// =============================================================================
+// HOW TO USE IN ERASER.IO:
+//   1. Go to https://app.eraser.io
+//   2. Create a new file → Insert → Entity Relationship Diagram
+//   3. Paste this entire file into the diagram code editor
+//   4. Eraser renders tables, columns, PK/FK, and crow's-foot relationships
+//
+// NORMALIZATION:
+//   • 1NF — Atomic columns, no repeating groups (lookup + junction tables)
+//   • 2NF — All non-key attributes depend on the full primary key
+//   • 3NF — No transitive dependencies (FII, categories, roles split out)
+// =============================================================================
+
+notation crows-feet
+typeface mono
+colorMode bold
+styleMode plain
+
+// =============================================================================
+// DOMAIN 1 — IDENTITY, AUTH & RBAC
+// =============================================================================
+
+roles [icon: shield, color: gray] {
+  id uuid pk
+  code varchar unique
+  name varchar
+  description text
+  created_at timestamptz
+  updated_at timestamptz
+}
+
+permissions [icon: key, color: gray] {
+  id uuid pk
+  code varchar unique
+  name varchar
+  module varchar
+  created_at timestamptz
+}
+
+role_permissions [icon: link, color: gray] {
+  role_id uuid pk fk
+  permission_id uuid pk fk
+  created_at timestamptz
+}
+
+users [icon: user, color: blue] {
+  id uuid pk
+  firebase_uid varchar unique
+  phone_number varchar unique
+  email varchar unique nullable
+  status varchar
+  kyc_status varchar
+  last_login_at timestamptz nullable
+  created_at timestamptz
+  updated_at timestamptz
+  deleted_at timestamptz nullable
+}
+
+user_roles [icon: users, color: blue] {
+  user_id uuid pk fk
+  role_id uuid pk fk
+  assigned_at timestamptz
+  assigned_by uuid fk nullable
+}
+
+user_profiles [icon: id-card, color: blue] {
+  id uuid pk
+  user_id uuid fk unique
+  first_name varchar
+  last_name varchar
+  date_of_birth date nullable
+  pan_number varchar unique nullable
+  gender varchar nullable
+  address_line1 varchar nullable
+  address_line2 varchar nullable
+  city varchar nullable
+  state varchar nullable
+  pincode varchar nullable
+  avatar_url varchar nullable
+  created_at timestamptz
+  updated_at timestamptz
+}
+
+user_sessions [icon: clock, color: blue] {
+  id uuid pk
+  user_id uuid fk
+  jwt_jti varchar unique
+  device_id varchar nullable
+  device_type varchar
+  ip_address varchar nullable
+  expires_at timestamptz
+  revoked_at timestamptz nullable
+  created_at timestamptz
+}
+
+// =============================================================================
+// DOMAIN 2 — ACCOUNT AGGREGATOR & CONSENT
+// =============================================================================
+
+financial_institution_types [icon: tag, color: green] {
+  id uuid pk
+  code varchar unique
+  name varchar
+  description text
+}
+
+financial_institutions [icon: landmark, color: green] {
+  id uuid pk
+  type_id uuid fk
+  fip_id varchar unique
+  name varchar
+  logo_url varchar nullable
+  is_active boolean
+  created_at timestamptz
+  updated_at timestamptz
+}
+
+aa_consents [icon: file-check, color: green] {
+  id uuid pk
+  user_id uuid fk
+  setu_consent_id varchar unique
+  consent_handle varchar
+  status varchar
+  purpose varchar
+  data_range_from date
+  data_range_to date
+  fetch_type varchar
+  frequency varchar
+  consent_start_at timestamptz
+  consent_expiry_at timestamptz
+  revoked_at timestamptz nullable
+  created_at timestamptz
+  updated_at timestamptz
+}
+
+consent_institutions [icon: link-2, color: green] {
+  consent_id uuid pk fk
+  institution_id uuid pk fk
+  created_at timestamptz
+}
+
+data_fetch_jobs [icon: download, color: green] {
+  id uuid pk
+  consent_id uuid fk
+  session_id varchar nullable
+  status varchar
+  fetch_type varchar
+  started_at timestamptz
+  completed_at timestamptz nullable
+  error_code varchar nullable
+  error_message text nullable
+  created_at timestamptz
+}
+
+webhook_events [icon: webhook, color: green] {
+  id uuid pk
+  consent_id uuid fk nullable
+  fetch_job_id uuid fk nullable
+  event_type varchar
+  payload jsonb
+  processed boolean
+  processed_at timestamptz nullable
+  created_at timestamptz
+}
+
+// =============================================================================
+// DOMAIN 3 — ACCOUNTS
+// =============================================================================
+
+account_types [icon: list, color: purple] {
+  id uuid pk
+  code varchar unique
+  name varchar
+  category varchar
+  description text
+}
+
+accounts [icon: wallet, color: purple] {
+  id uuid pk
+  user_id uuid fk
+  consent_id uuid fk
+  institution_id uuid fk
+  account_type_id uuid fk
+  external_account_id varchar
+  masked_account_number varchar
+  account_holder_name varchar nullable
+  currency varchar
+  status varchar
+  linked_at timestamptz
+  last_synced_at timestamptz nullable
+  created_at timestamptz
+  updated_at timestamptz
+}
+
+account_balance_snapshots [icon: activity, color: purple] {
+  id uuid pk
+  account_id uuid fk
+  balance decimal
+  available_balance decimal nullable
+  snapshot_date date
+  source varchar
+  created_at timestamptz
+}
+
+// =============================================================================
+// DOMAIN 4 — TRANSACTIONS
+// =============================================================================
+
+transaction_category_groups [icon: folder, color: yellow] {
+  id uuid pk
+  code varchar unique
+  name varchar
+  icon varchar nullable
+  sort_order int
+}
+
+transaction_categories [icon: tag, color: yellow] {
+  id uuid pk
+  group_id uuid fk
+  code varchar unique
+  name varchar
+  is_system boolean
+  created_at timestamptz
+}
+
+transactions [icon: receipt, color: yellow] {
+  id uuid pk
+  account_id uuid fk
+  category_id uuid fk nullable
+  external_txn_id varchar
+  txn_type varchar
+  amount decimal
+  currency varchar
+  txn_date timestamptz
+  value_date date nullable
+  narration text nullable
+  merchant_name varchar nullable
+  payment_mode varchar nullable
+  is_recurring boolean
+  is_user_categorized boolean
+  created_at timestamptz
+  updated_at timestamptz
+}
+
+// =============================================================================
+// DOMAIN 5 — INVESTMENTS
+// =============================================================================
+
+investment_holdings [icon: trending-up, color: violet] {
+  id uuid pk
+  account_id uuid fk
+  user_id uuid fk
+  instrument_type varchar
+  isin varchar nullable
+  scheme_name varchar
+  units decimal
+  nav decimal nullable
+  current_value decimal
+  invested_value decimal nullable
+  as_of_date date
+  created_at timestamptz
+  updated_at timestamptz
+}
+
+investment_transactions [icon: arrow-left-right, color: violet] {
+  id uuid pk
+  holding_id uuid fk
+  account_id uuid fk
+  external_txn_id varchar
+  txn_type varchar
+  units decimal
+  nav decimal nullable
+  amount decimal
+  txn_date date
+  created_at timestamptz
+}
+
+// =============================================================================
+// DOMAIN 6 — INSURANCE
+// =============================================================================
+
+insurance_policies [icon: shield, color: red] {
+  id uuid pk
+  user_id uuid fk
+  account_id uuid fk nullable
+  institution_id uuid fk
+  policy_number varchar
+  policy_type varchar
+  product_name varchar
+  sum_assured decimal
+  premium_amount decimal nullable
+  premium_frequency varchar nullable
+  policy_start_date date
+  policy_end_date date nullable
+  status varchar
+  created_at timestamptz
+  updated_at timestamptz
+}
+
+insurance_premium_payments [icon: credit-card, color: red] {
+  id uuid pk
+  policy_id uuid fk
+  due_date date
+  paid_date date nullable
+  amount decimal
+  status varchar
+  created_at timestamptz
+}
+
+// =============================================================================
+// DOMAIN 7 — LOANS
+// =============================================================================
+
+loans [icon: banknote, color: orange] {
+  id uuid pk
+  user_id uuid fk
+  account_id uuid fk nullable
+  institution_id uuid fk
+  loan_account_number varchar
+  loan_type varchar
+  principal_amount decimal
+  outstanding_amount decimal
+  interest_rate decimal nullable
+  tenure_months int nullable
+  emi_amount decimal nullable
+  disbursement_date date nullable
+  status varchar
+  created_at timestamptz
+  updated_at timestamptz
+}
+
+loan_emi_payments [icon: calendar, color: orange] {
+  id uuid pk
+  loan_id uuid fk
+  due_date date
+  paid_date date nullable
+  emi_amount decimal
+  principal_component decimal nullable
+  interest_component decimal nullable
+  status varchar
+  created_at timestamptz
+}
+
+// =============================================================================
+// DOMAIN 8 — GOALS & PLANNING
+// =============================================================================
+
+goals [icon: target, color: indigo] {
+  id uuid pk
+  user_id uuid fk
+  name varchar
+  goal_type varchar
+  target_amount decimal
+  current_amount decimal
+  target_date date nullable
+  priority int
+  status varchar
+  created_at timestamptz
+  updated_at timestamptz
+}
+
+goal_linked_accounts [icon: link, color: indigo] {
+  goal_id uuid pk fk
+  account_id uuid pk fk
+  allocation_pct decimal nullable
+  created_at timestamptz
+}
+
+goal_milestones [icon: flag, color: indigo] {
+  id uuid pk
+  goal_id uuid fk
+  name varchar
+  target_amount decimal
+  achieved_amount decimal
+  target_date date nullable
+  achieved_at timestamptz nullable
+  created_at timestamptz
+}
+
+// =============================================================================
+// DOMAIN 9 — COMPUTED FINANCIAL METRICS (Processing Layer Output)
+// =============================================================================
+
+net_worth_snapshots [icon: pie-chart, color: teal] {
+  id uuid pk
+  user_id uuid fk
+  total_assets decimal
+  total_liabilities decimal
+  net_worth decimal
+  snapshot_date date
+  breakdown jsonb
+  created_at timestamptz
+}
+
+monthly_cash_flows [icon: bar-chart, color: teal] {
+  id uuid pk
+  user_id uuid fk
+  year int
+  month int
+  total_income decimal
+  total_expense decimal
+  net_cash_flow decimal
+  category_breakdown jsonb
+  created_at timestamptz
+}
+
+financial_health_scores [icon: heart, color: teal] {
+  id uuid pk
+  user_id uuid fk
+  overall_score decimal
+  savings_score decimal nullable
+  debt_score decimal nullable
+  investment_score decimal nullable
+  insurance_score decimal nullable
+  computed_at timestamptz
+  factors jsonb
+}
+
+risk_assessments [icon: alert-triangle, color: teal] {
+  id uuid pk
+  user_id uuid fk
+  risk_level varchar
+  risk_score decimal
+  assessment_type varchar
+  findings jsonb
+  assessed_at timestamptz
+}
+
+// =============================================================================
+// DOMAIN 10 — AI INSIGHTS
+// =============================================================================
+
+ai_insight_types [icon: list, color: violet] {
+  id uuid pk
+  code varchar unique
+  name varchar
+  description text
+}
+
+ai_insights [icon: brain, color: violet] {
+  id uuid pk
+  user_id uuid fk
+  insight_type_id uuid fk
+  title varchar
+  summary text
+  content jsonb
+  model_provider varchar
+  model_name varchar
+  confidence_score decimal nullable
+  valid_until timestamptz nullable
+  is_read boolean
+  created_at timestamptz
+}
+
+// =============================================================================
+// DOMAIN 11 — NOTIFICATIONS
+// =============================================================================
+
+notification_channels [icon: send, color: red] {
+  id uuid pk
+  code varchar unique
+  name varchar
+}
+
+notification_preferences [icon: settings, color: red] {
+  id uuid pk
+  user_id uuid fk
+  channel_id uuid fk
+  category varchar
+  is_enabled boolean
+  updated_at timestamptz
+}
+
+notifications [icon: bell, color: red] {
+  id uuid pk
+  user_id uuid fk
+  channel_id uuid fk
+  category varchar
+  title varchar
+  body text
+  payload jsonb nullable
+  status varchar
+  sent_at timestamptz nullable
+  read_at timestamptz nullable
+  created_at timestamptz
+}
+
+// =============================================================================
+// DOMAIN 12 — DOCUMENTS (GCS Metadata)
+// =============================================================================
+
+document_types [icon: file, color: blue] {
+  id uuid pk
+  code varchar unique
+  name varchar
+}
+
+documents [icon: file-text, color: blue] {
+  id uuid pk
+  user_id uuid fk
+  document_type_id uuid fk
+  related_entity_type varchar nullable
+  related_entity_id uuid nullable
+  file_name varchar
+  gcs_bucket varchar
+  gcs_path varchar
+  mime_type varchar
+  file_size_bytes bigint
+  checksum varchar nullable
+  uploaded_at timestamptz
+  created_at timestamptz
+}
+
+// =============================================================================
+// DOMAIN 13 — ADMIN, AUDIT & SUPPORT
+// =============================================================================
+
+audit_logs [icon: clipboard-list, color: gray] {
+  id uuid pk
+  actor_user_id uuid fk nullable
+  target_user_id uuid fk nullable
+  action varchar
+  entity_type varchar
+  entity_id uuid nullable
+  ip_address varchar nullable
+  metadata jsonb nullable
+  created_at timestamptz
+}
+
+support_tickets [icon: headset, color: gray] {
+  id uuid pk
+  user_id uuid fk
+  assigned_to uuid fk nullable
+  subject varchar
+  description text
+  status varchar
+  priority varchar
+  resolved_at timestamptz nullable
+  created_at timestamptz
+  updated_at timestamptz
+}
+
+// =============================================================================
+// RELATIONSHIPS — IDENTITY & RBAC
+// =============================================================================
+
+roles.id < role_permissions.role_id
+permissions.id < role_permissions.permission_id
+users.id < user_roles.user_id
+roles.id < user_roles.role_id
+users.id - user_profiles.user_id
+users.id < user_sessions.user_id
+users.id < user_roles.assigned_by
+
+// =============================================================================
+// RELATIONSHIPS — CONSENT & AA
+// =============================================================================
+
+financial_institution_types.id < financial_institutions.type_id
+users.id < aa_consents.user_id
+aa_consents.id < consent_institutions.consent_id
+financial_institutions.id < consent_institutions.institution_id
+aa_consents.id < data_fetch_jobs.consent_id
+aa_consents.id < webhook_events.consent_id
+data_fetch_jobs.id < webhook_events.fetch_job_id
+
+// =============================================================================
+// RELATIONSHIPS — ACCOUNTS
+// =============================================================================
+
+users.id < accounts.user_id
+aa_consents.id < accounts.consent_id
+financial_institutions.id < accounts.institution_id
+account_types.id < accounts.account_type_id
+accounts.id < account_balance_snapshots.account_id
+
+// =============================================================================
+// RELATIONSHIPS — TRANSACTIONS
+// =============================================================================
+
+transaction_category_groups.id < transaction_categories.group_id
+accounts.id < transactions.account_id
+transaction_categories.id < transactions.category_id
+
+// =============================================================================
+// RELATIONSHIPS — INVESTMENTS
+// =============================================================================
+
+accounts.id < investment_holdings.account_id
+users.id < investment_holdings.user_id
+investment_holdings.id < investment_transactions.holding_id
+accounts.id < investment_transactions.account_id
+
+// =============================================================================
+// RELATIONSHIPS — INSURANCE
+// =============================================================================
+
+users.id < insurance_policies.user_id
+accounts.id < insurance_policies.account_id
+financial_institutions.id < insurance_policies.institution_id
+insurance_policies.id < insurance_premium_payments.policy_id
+
+// =============================================================================
+// RELATIONSHIPS — LOANS
+// =============================================================================
+
+users.id < loans.user_id
+accounts.id < loans.account_id
+financial_institutions.id < loans.institution_id
+loans.id < loan_emi_payments.loan_id
+
+// =============================================================================
+// RELATIONSHIPS — GOALS
+// =============================================================================
+
+users.id < goals.user_id
+goals.id < goal_linked_accounts.goal_id
+accounts.id < goal_linked_accounts.account_id
+goals.id < goal_milestones.goal_id
+
+// =============================================================================
+// RELATIONSHIPS — COMPUTED METRICS
+// =============================================================================
+
+users.id < net_worth_snapshots.user_id
+users.id < monthly_cash_flows.user_id
+users.id < financial_health_scores.user_id
+users.id < risk_assessments.user_id
+
+// =============================================================================
+// RELATIONSHIPS — AI INSIGHTS
+// =============================================================================
+
+users.id < ai_insights.user_id
+ai_insight_types.id < ai_insights.insight_type_id
+
+// =============================================================================
+// RELATIONSHIPS — NOTIFICATIONS
+// =============================================================================
+
+users.id < notification_preferences.user_id
+notification_channels.id < notification_preferences.channel_id
+users.id < notifications.user_id
+notification_channels.id < notifications.channel_id
+
+// =============================================================================
+// RELATIONSHIPS — DOCUMENTS
+// =============================================================================
+
+users.id < documents.user_id
+document_types.id < documents.document_type_id
+
+// =============================================================================
+// RELATIONSHIPS — ADMIN
+// =============================================================================
+
+users.id < audit_logs.actor_user_id
+users.id < audit_logs.target_user_id
+users.id < support_tickets.user_id
+users.id < support_tickets.assigned_to
+
+// =============================================================================
+// LEGEND
+// =============================================================================
+
+legend [position: bottom-right] {
+  [color: blue, label: "Identity & Users"]
+  [color: green, label: "Consent & AA"]
+  [color: purple, label: "Accounts"]
+  [color: yellow, label: "Transactions"]
+  [color: violet, label: "Investments & AI"]
+  [color: teal, label: "Computed Metrics"]
+  [connection: <, label: "One-to-Many"]
+  [connection: -, label: "One-to-One"]
+}

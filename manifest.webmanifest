@@ -1,7 +1,7 @@
 {
-  "name": "Arivo OS",
-  "short_name": "Arivo OS",
-  "description": "India's Financial Operating System",
+  "name": "Arivo",
+  "short_name": "Arivo",
+  "description": "India's First Financial Decision Engine",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#050c1a",
