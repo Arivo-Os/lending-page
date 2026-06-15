@@ -1,0 +1,29 @@
+{
+  "name": "arivo-landing",
+  "private": true,
+  "version": "2.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "mkdir -p public/assets && rsync -a assets/ public/assets/ && vite",
+    "build": "mkdir -p public/assets && rsync -a assets/ public/assets/ && vite build",
+    "preview": "vite preview",
+    "build:deck": "node scripts/build-pitch-deck.cjs"
+  },
+  "dependencies": {
+    "framer-motion": "^11.18.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.5.1",
+    "pptxgenjs": "^4.0.1",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.7.3",
+    "vite": "^6.0.7",
+    "vite-plugin-static-copy": "^2.2.0"
+  }
+}

@@ -1,11 +1,11 @@
 {
   "name": "Arivo",
   "short_name": "Arivo",
-  "description": "India's First Financial Decision Engine",
+  "description": "India's Financial Decision Engine",
   "start_url": ".",
   "display": "standalone",
-  "background_color": "#050c1a",
-  "theme_color": "#050c1a",
+  "background_color": "#09090b",
+  "theme_color": "#09090b",
   "icons": [
     {
       "src": "assets/images/icon-192.png",
